@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2 · Variables & Data Types</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <button class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 2 · Variables & Data Types</h1>
+        <div class="sub">Click on any card to expand — Class Work (console.log, variables, let/const) and Homework (typeof, string methods)</div>
+    </div>
+
+    <div class="cards-wrapper">
+        <!-- CLASS WORK CARD -->
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+
+        <!-- HOMEWORK CARD -->
+        <div class="card" id="homeworkCard">
+            <div class="card-header" id="homeworkHeader">
+                <div class="card-title">
+                    <span>📚</span> Homework
+                </div>
+                <div class="toggle-icon" id="homeworkIcon">▼</div>
+            </div>
+            <div class="card-content" id="homeworkContent">
+                <div id="homeworkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bonus Gallery Section - typeof examples
+    <div class="gallery">
+        <h3>🧩 JavaScript Basics: typeof & String Methods</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="task-title">🔹 typeof Operator Examples</div>
+                <pre><code>typeof "hello"     // "string"
+typeof 42          // "number"
+typeof true        // "boolean"
+typeof undefined   // "undefined"
+typeof null        // "object" (historical bug)</code></pre>
+                <div class="output" id="typeofOutput"></div>
+            </div>
+            <div class="gallery-item">
+                <div class="task-title">🔸 String Methods Demo</div>
+                <pre><code>let str = "    john wick   ";
+str.trim()           // "john wick"
+str.toUpperCase()    // "    JOHN WICK   "
+str.length           // 17
+str.includes("gouri") // false</code></pre>
+                <div class="output" id="stringOutput"></div>
+            </div>
+        </div>
+    </div> -->
+    <footer>💡 Tip: Click on "Class Work" or "Homework" — they expand/collapse independently!</footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

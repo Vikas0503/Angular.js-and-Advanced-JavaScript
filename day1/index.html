@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1 · Functions & Arrow Functions</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 1 · Functions & Arrow Functions</h1>
+        <div class="sub">Click Class Work or Homework to open that section; the other stays closed.</div>
+    </div>
+
+    <div class="split-layout">
+        <div class="expandable-card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasksContainer"></div>
+            </div>
+        </div>
+
+        <div class="expandable-card" id="homeworkCard">
+            <div class="card-header" id="homeworkHeader">
+                <div class="card-title">
+                    <span>📚</span> Homework
+                </div>
+                <div class="toggle-icon" id="homeworkIcon">▼</div>
+            </div>
+            <div class="card-content" id="homeworkContent">
+                <div id="homeworkTasksContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery section disabled — uncomment to restore topic snippets -->
+    <footer>💡 Only one panel stays open at a time — pick Class Work or Homework</footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

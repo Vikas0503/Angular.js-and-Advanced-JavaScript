@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3 · Homework · Operators & Expressions</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 4 · Homework · Control Flow</h1>
+        <div class="sub">Expand a task to see its reference output. The console shows logs for <strong>that task only</strong> when you open it.</div>
+    </div>
+
+    <div class="stack-layout">
+
+        <!-- TASK 1: Grading System -->
+        <div class="expandable-card" id="task1" data-log-task="grading">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Grading System (if/else if/else)</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Declare a <code>const marks = 72;</code></li>
+                    <li>Use <code>if / else if / else</code> to log a grade based on ranges:
+                        <ul style="margin-top: 0.3rem; margin-left: 1.2rem;">
+                            <li>90+ → "A"</li>
+                            <li>75–89 → "B"</li>
+                            <li>60–74 → "C"</li>
+                            <li>below 60 → "F"</li>
+                        </ul>
+                    </li>
+                    <li>Test by changing <code>marks</code> to 95, 50, and 75 — confirm each prints the right grade.</li>
+                    <li><strong>Bonus:</strong> add a check at the top — if marks is negative or above 100, log "Invalid marks" and stop.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outGrading"></div>
+            </div>
+        </div>
+
+        <!-- TASK 2: Day Type with switch -->
+        <div class="expandable-card" id="task2" data-log-task="daytype">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 2</span>
+                    <span>Day Type (switch statement)</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Declare <code>const day = "Wednesday";</code></li>
+                    <li>Write a <code>switch</code> statement that logs:
+                        <ul style="margin-top: 0.3rem; margin-left: 1.2rem;">
+                            <li>"Weekday" for Monday–Friday</li>
+                            <li>"Weekend" for Saturday and Sunday</li>
+                            <li>"Invalid day" for anything else</li>
+                        </ul>
+                    </li>
+                    <li>Use intentional fall-through to group the weekday cases — don't repeat code.</li>
+                    <li>Test with: <code>"Monday", "Saturday", "Holiday"</code>.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outDayType"></div>
+            </div>
+        </div>
+
+        <!-- TASK 3: Truthy / Falsy Detective -->
+        <div class="expandable-card" id="task3" data-log-task="truthy">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 3</span>
+                    <span>Truthy / Falsy Detective</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Predict whether each value is <strong>truthy</strong> or <strong>falsy</strong>, write your guess as a comment, then verify with <code>if (value) { ... } else { ... }</code>:</li>
+                    <li><code>0</code>, <code>"0"</code>, <code>""</code> (empty string), <code>" "</code> (single space), <code>null</code>, <code>undefined</code>, <code>NaN</code>, <code>[]</code>, <code>{}</code>, <code>"false"</code></li>
+                    <li>Below your code, write a short comment listing the 6 falsy values from memory.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outTruthy"></div>
+            </div>
+        </div>
+
+        <!-- BONUS: Guard Clauses Refactor -->
+        <div class="expandable-card" id="taskBonus" data-log-task="guard">
+            <div class="card-header" id="hdrBonus">
+                <div class="card-title">
+                    <span class="hw-task-badge">BONUS</span>
+                    <span>Guard Clauses Refactor</span>
+                </div>
+                <div class="toggle-icon" id="iconBonus">▼</div>
+            </div>
+            <div class="card-content" id="contentBonus">
+                <ul class="hw-instructions">
+                    <li>Copy the nested function below into your file. It logs whether a user can post a comment.</li>
+                    <li>Refactor it using <strong>guard clauses</strong> — flip each condition and return early.</li>
+                    <li>Test with: a valid user, a user with <code>isBanned = true</code>, and <code>null</code>.</li>
+                </ul>
+                <pre style="background:#1e293b; color:#e2e8f0; padding:0.8rem; border-radius:0.8rem; margin:0.8rem 0; font-size:0.8rem;"><code>// Nested version – refactor this:
+function canComment(user) {
+    if (user) {
+        if (!user.isBanned) {
+            if (user.age >= 13) {
+                console.log("Comment allowed");
+            }
+        }
+    }
+}</code></pre>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outGuard"></div>
+                <p class="hw-note"><strong>Guard clauses:</strong> Check for invalid conditions first and return early, making the code flatter and more readable.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>💡 Open any task header to run its demo in the console. Collapsing does not clear the console.</footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

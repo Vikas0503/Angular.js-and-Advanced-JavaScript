@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3 · Homework · Operators & Expressions</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 3 · Homework Tasks</h1>
+        <div class="sub">Expand a task to see its reference output. The browser console is cleared and shows logs for <strong>that task only</strong> when you open it (turn off “Preserve log” in DevTools if old lines stay visible).</div>
+    </div>
+
+    <div class="stack-layout">
+
+        <div class="expandable-card" id="hwTask1" data-log-task="arithmetic">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Arithmetic Detective</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ol class="hw-instructions">
+                    <li>Declare two <code>const</code> variables: <code>a = 17</code> and <code>b = 5</code>.</li>
+                    <li>Log each arithmetic result: <code>a + b</code>, <code>a - b</code>, <code>a * b</code>, <code>a / b</code>, <code>a % b</code>, <code>a ** b</code>.</li>
+                    <li>Before running, write a comment predicting each output.</li>
+                    <li><strong>Bonus:</strong> use <code>%</code> to check if the number <code>42</code> is even or odd (log <code>'even'</code> or <code>'odd'</code>).</li>
+                </ol>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outArithmetic"></div>
+            </div>
+        </div>
+
+        <div class="expandable-card" id="hwTask2" data-log-task="equality">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 2</span>
+                    <span>Equality Trap</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ol class="hw-instructions">
+                    <li>Predict the output of each expression <strong>before</strong> running — write your guess as a comment:</li>
+                    <li><code>5 == "5"</code> &nbsp;|&nbsp; <code>5 === "5"</code> &nbsp;|&nbsp; <code>0 == false</code> &nbsp;|&nbsp; <code>0 === false</code> &nbsp;|&nbsp; <code>null == undefined</code></li>
+                    <li>Run each and compare with your predictions.</li>
+                    <li>In a comment, explain <strong>why</strong> you should always prefer <code>===</code> over <code>==</code>.</li>
+                </ol>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outEquality"></div>
+                <p class="hw-note"><strong>Why <code>===</code>?</strong> Strict equality compares type and value, so you avoid surprising coercions that <code>==</code> performs.</p>
+            </div>
+        </div>
+
+        <div class="expandable-card" id="hwTask3" data-log-task="access">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 3</span>
+                    <span>Access Control Logic</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ol class="hw-instructions">
+                    <li>Create these variables: <code>const age = 19;</code> <code>const hasLicense = true;</code> <code>const hasCar = false;</code></li>
+                    <li>Using <code>&amp;&amp;</code> and <code>||</code>, log whether the person:</li>
+                    <li>(a) <strong>can drive</strong> — needs <code>age &gt;= 18</code> AND <code>hasLicense</code></li>
+                    <li>(b) <strong>can travel</strong> — needs <code>hasLicense</code> OR <code>hasCar</code></li>
+                    <li>Try flipping <code>hasLicense</code> to <code>false</code> and re-run. What changes?</li>
+                </ol>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outAccess"></div>
+            </div>
+        </div>
+
+        <div class="expandable-card" id="hwBonus" data-log-task="ternary">
+            <div class="card-header" id="hdrBonus">
+                <div class="card-title">
+                    <span class="hw-task-badge">BONUS</span>
+                    <span>Ternary &amp; Nullish</span>
+                </div>
+                <div class="toggle-icon" id="iconBonus">▼</div>
+            </div>
+            <div class="card-content" id="contentBonus">
+                <ol class="hw-instructions">
+                    <li>Write a ternary: <code>const mood = age &gt;= 18 ? 'adult' : 'minor';</code> — then log it (use an <code>age</code> value in your script).</li>
+                    <li>Declare: <code>let username = null;</code> <code>const display = username ?? 'Guest';</code> — log <code>display</code>.</li>
+                    <li>Now try: <code>const display2 = username || 'Guest';</code> — does it behave the same?</li>
+                    <li>In a comment, explain what <code>??</code> does that <code>||</code> doesn’t.</li>
+                </ol>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outTernary"></div>
+                <p class="hw-note"><strong><code>??</code> vs <code>||</code>:</strong> Nullish coalescing (<code>??</code>) only falls back for <code>null</code> or <code>undefined</code>. <code>||</code> treats any falsy value (<code>0</code>, <code>''</code>, <code>false</code>, etc.) as “missing.”</p>
+            </div>
+        </div>
+
+        <div class="expandable-card" id="hwRect" data-log-task="rectangle">
+            <div class="card-header" id="hdrRect">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Rectangle area</span>
+                </div>
+                <div class="toggle-icon" id="iconRect">▼</div>
+            </div>
+            <div class="card-content" id="contentRect">
+                <ul class="hw-instructions">
+                    <li>Write a function <code>area(length, width)</code> that returns the area of a rectangle.</li>
+                    <li>Call it three times with different values and log each result.</li>
+                    <li><strong>Bonus:</strong> rewrite the same logic as an <strong>arrow function</strong> with <strong>implicit return</strong>.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outRectangle"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>Open a task header to run its demo in the console. Collapsing does not clear the console.</footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
