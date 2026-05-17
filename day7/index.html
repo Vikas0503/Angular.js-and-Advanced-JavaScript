@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7 · Array Methods (filter, find, map, reduce, some, every)</title>
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 7 · Array Methods</h1>
+        <div class="sub">Learn filter, find, some, every, map, reduce, push, pop, unshift, splice</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Homework Tasks</h3>
+
+        <!-- Task 1: Cart Manipulation -->
+        <div class="expandable-card" id="hwTask1" data-log-task="cart">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Cart Manipulation (push, unshift, pop, splice)</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Start with: <code>const cart = ["bread", "milk", "eggs"];</code></li>
+                    <li>Use <code>push</code> to add "butter". Then use <code>unshift</code> to add "rice" at the start. Log the cart.</li>
+                    <li>Use <code>pop</code> to remove the last item. Log what was removed and the new cart.</li>
+                    <li>Use <code>splice(1, 1)</code> to remove one item starting at index 1. Log the result.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outCart"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Filter Passing Scores -->
+        <div class="expandable-card" id="hwTask2" data-log-task="scores">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 2</span>
+                    <span>Filter Passing Scores (filter, find, every, some)</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Declare: <code>const scores = [88, 42, 75, 60, 91, 39, 55, 70];</code></li>
+                    <li>Use <code>filter</code> to create a new array of scores that are >= 60 (passing). Log it.</li>
+                    <li>Use <code>find</code> to get the FIRST failing score. Log it.</li>
+                    <li>Use <code>every</code> to check if ALL scores are passing. Log the result.</li>
+                    <li><strong>Bonus:</strong> use <code>some</code> to check if ANY score is above 90.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outScores"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Map Prices with GST -->
+        <div class="expandable-card" id="hwTask3" data-log-task="gst">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 3</span>
+                    <span>Map Prices with GST</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Declare: <code>const prices = [100, 250, 500, 1200, 80];</code></li>
+                    <li>Use <code>map</code> to create a new array with 18% GST added to each price.</li>
+                    <li>Log both the original and new array — the original should be unchanged.</li>
+                    <li><strong>Bonus:</strong> round each value to 2 decimal places using <code>.toFixed(2)</code>.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outGST"></div>
+            </div>
+        </div>
+
+        <!-- Task 4: Reduce to Total -->
+        <div class="expandable-card" id="hwTask4" data-log-task="reduce">
+            <div class="card-header" id="hdr4">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 4</span>
+                    <span>Reduce to Total & Highest Expense</span>
+                </div>
+                <div class="toggle-icon" id="icon4">▼</div>
+            </div>
+            <div class="card-content" id="content4">
+                <ul class="hw-instructions">
+                    <li>Declare: <code>const expenses = [250, 800, 120, 50, 1500, 75];</code></li>
+                    <li>Use <code>reduce</code> to calculate the total of all expenses. Log it.</li>
+                    <li>Then use <code>reduce</code> to find the highest single expense. Log it.</li>
+                    <li><strong>Bonus:</strong> combine filter + reduce to total only expenses above 100.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outReduce"></div>
+            </div>
+        </div>
+
+        <!-- HOMEWORK Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="hw-task-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Given an array of names <code>["Priya", "Aarav", "Riya"]</code>, use <code>map</code> to make a new array of greetings: "Hello, Priya", etc.</li>
+                    <li>Filter an array of numbers to only the even ones, then use reduce to sum them.</li>
+                    <li>Given <code>[3, 1, 4, 1, 5, 9, 2, 6]</code>, find the max using both <code>Math.max(...arr)</code> and reduce.</li>
+                    <li>Take any array and write a function that returns its average (sum / length).</li>
+                    <li>📖 Read: <a href="https://javascript.info/array" target="_blank">javascript.info/array</a> and <a href="https://javascript.info/array-methods" target="_blank">javascript.info/array-methods</a>.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see its output in the console and below!</footer>
+</div>
+<script src="/day7/script.js"></script>
+</body>
+</html>

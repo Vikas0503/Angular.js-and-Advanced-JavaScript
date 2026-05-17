@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6 · Arrow Functions & Default Parameters</title>
+    <link rel="stylesheet" href="/style.css">
+    <!-- <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .hw-task-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hw-note {
+            background: #fef3c7;
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: #92400e;
+            border-left: 3px solid #f59e0b;
+        }
+    </style> -->
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 6 · Arrow Functions & Default Parameters</h1>
+        <div class="sub">Learn arrow functions, implicit returns, default parameters, and pure vs impure functions</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Homework Tasks</h3>
+
+        <!-- Task 1: Rectangle Area -->
+        <div class="expandable-card" id="hwTask1" data-log-task="rectangle">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Rectangle Area</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Write a function <code>area(length, width)</code> that returns the area of a rectangle.</li>
+                    <li>Call it three times with different values and log each result.</li>
+                    <li><strong>Bonus:</strong> rewrite the same function as an arrow function with implicit return.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outRectangle"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Greeting with Default -->
+        <div class="expandable-card" id="hwTask2" data-log-task="greeting">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 2</span>
+                    <span>Greeting with Default Parameter</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Write a function <code>greet(name)</code> that returns <code>"Hello, &lt;name&gt;!"</code>.</li>
+                    <li>Use a default parameter: if no name is passed, it should default to <code>"Guest"</code>.</li>
+                    <li>Call it three times: with <code>"Priya"</code>, with <code>"Aarav"</code>, and with no argument.</li>
+                    <li><strong>Bonus:</strong> try <code>greet(null)</code> — does it use the default? Why or why not?</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outGreeting"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Temperature Converter -->
+        <div class="expandable-card" id="hwTask3" data-log-task="temperature">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 3</span>
+                    <span>Temperature Converter (C to F)</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Write an arrow function <code>cToF(celsius)</code> that converts Celsius to Fahrenheit.</li>
+                    <li>Formula: <code>F = C * 9/5 + 32</code>.</li>
+                    <li>Use <strong>implicit return</strong>.</li>
+                    <li>Test with: <code>0, 100, 37</code> (body temperature), and <code>45</code> (Jaipur summer).</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outTemperature"></div>
+            </div>
+        </div>
+
+        <!-- Task 4: Pure vs Impure Functions -->
+        <div class="expandable-card" id="hwTask4" data-log-task="pureimpure">
+            <div class="card-header" id="hdr4">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 4</span>
+                    <span>Pure vs Impure Functions</span>
+                </div>
+                <div class="toggle-icon" id="icon4">▼</div>
+            </div>
+            <div class="card-content" id="content4">
+                <ul class="hw-instructions">
+                    <li>Write a <strong>PURE</strong> function <code>double(n)</code> that returns <code>n * 2</code>.</li>
+                    <li>Write an <strong>IMPURE</strong> function <code>addToTotal(n)</code> that updates an outer variable <code>let total = 0</code> and returns the new total.</li>
+                    <li>Call each function three times.</li>
+                    <li>Write a comment: which one is easier to reason about, and why?</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPureImpure"></div>
+            </div>
+        </div>
+
+        <!-- HOMEWORK Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="hw-task-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Write a function <code>kmToMiles(km)</code> — formula <code>km * 0.621</code>.</li>
+                    <li>Write a function <code>gstAmount(price, rate = 18)</code> returning the tax amount.</li>
+                    <li>Write a function <code>fullName(first, last)</code> returning the full name as one string.</li>
+                    <li>Write a function <code>isAdult(age)</code> returning <code>true/false</code>.</li>
+                    <li>📖 Read: <a href="https://javascript.info/function-basics" target="_blank">javascript.info/function-basics</a> and <a href="https://javascript.info/arrow-functions-basics" target="_blank">javascript.info/arrow-functions-basics</a>.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see its output in the console and below!</footer>
+</div>
+<script src="/day6/script.js"></script>
+</body>
+</html>

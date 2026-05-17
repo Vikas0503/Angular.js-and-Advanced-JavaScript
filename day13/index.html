@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Day 1 · Execution Context & Hoisting</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .advanced-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .call-stack-viz {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.8rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .stack-frame {
+            border: 1px solid #475569;
+            padding: 0.3rem 0.6rem;
+            margin: 0.1rem 0;
+            background: #334155;
+            border-radius: 0.3rem;
+        }
+
+        .stack-top {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        .tdz-warning {
+            background: #fef3c7;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: #92400e;
+            font-size: 0.8rem;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>🔥 Advanced Day 1 · Execution Context & Hoisting</h1>
+        <div class="sub">Learn Execution Context, Call Stack, Hoisting, TDZ, and Function Declarations vs Expressions</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Hands-On Exercises</h3>
+
+        <!-- Task 1: Predict var hoist -->
+        <div class="expandable-card" id="hwTask1" data-log-task="varhoist">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 1</span>
+                    <span>Predict the var hoist</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Type this exact snippet: <code>console.log(name); var name = "Priya"; console.log(name);</code></li>
+                    <li>BEFORE running it, predict what each console.log will print.</li>
+                    <li>Run it. Match your prediction against actual output.</li>
+                    <li>Add a comment explaining why the FIRST log is undefined and not a ReferenceError.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-var-hoist">Run var hoist demo</button>
+                    <div id="var-hoist-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outVarHoist"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Trigger the TDZ -->
+        <div class="expandable-card" id="hwTask2" data-log-task="tdz">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 2</span>
+                    <span>Trigger the TDZ</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Type this snippet: <code>console.log(city); let city = "Jaipur";</code></li>
+                    <li>Predict what happens. Then run it.</li>
+                    <li>Note the EXACT error name and message.</li>
+                    <li>Move the declaration above console.log and verify it runs.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-tdz-error">Run TDZ error demo</button>
+                    <button id="run-tdz-fixed">Run fixed version (declaration first)</button>
+                    <div id="tdz-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outTDZ"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Function declaration vs expression -->
+        <div class="expandable-card" id="hwTask3" data-log-task="funcdec">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 3</span>
+                    <span>Function declaration vs expression</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Create file with: <code>sayHi(); greet(); function sayHi() { console.log("Hi"); } var greet = function() { console.log("Hello"); };</code></li>
+                    <li>Predict which call works and which throws.</li>
+                    <li>Note the exact error type for the failing call.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-func-demo">Run function declaration vs expression demo</button>
+                    <div id="func-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outFuncDec"></div>
+            </div>
+        </div>
+
+        <!-- Bonus: Trace the Call Stack -->
+        <div class="expandable-card" id="hwBonus" data-log-task="callstack">
+            <div class="card-header" id="hdrBonus">
+                <div class="card-title">
+                    <span class="advanced-badge">★ BONUS</span>
+                    <span>Trace the Call Stack</span>
+                </div>
+                <div class="toggle-icon" id="iconBonus">▼</div>
+            </div>
+            <div class="card-content" id="contentBonus">
+                <ul class="hw-instructions">
+                    <li>Define: <code>multiply(a, b) = a * b; square(n) = multiply(n, n); printSquare(n) = console.log(square(n));</code></li>
+                    <li>Call <code>printSquare(5)</code>.</li>
+                    <li>Draw the call stack at the moment <code>multiply(5, 5)</code> is at the top.</li>
+                </ul>
+                <div class="output-label">Live Demo & Call Stack Visualization</div>
+                <div class="demo-area">
+                    <button id="run-callstack">Run call stack demo (with console.trace)</button>
+                    <div id="callstack-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                    <div id="callstack-viz" class="call-stack-viz"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outCallStack"></div>
+            </div>
+        </div>
+
+        <!-- Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="advanced-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Predict output: <code>console.log(typeof age); var age = 25;</code></li>
+                    <li>Write three versions of same function: declaration, var expression, const arrow. Call each before its line.</li>
+                    <li>Add <code>console.trace()</code> to a function in your code.</li>
+                    <li>📖 Read: <a href="https://javascript.info/var" target="_blank">javascript.info/var</a> and <a href="https://javascript.info/closure" target="_blank">javascript.info/closure</a></li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see the explanation! Open browser console (F12) to see detailed logs and stack traces.</footer>
+</div>
+
+<script src="/day13/script.js"></script>
+</body>
+</html>

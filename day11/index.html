@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 11 · Events & Event Delegation</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .hw-task-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .demo-area h4 {
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .demo-preview {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        input {
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            margin: 0.25rem;
+        }
+
+        .todo-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .todo-list li {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .todo-list li:hover {
+            background: #e2e8f0;
+        }
+
+        .todo-list .done {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .count-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .input-preview {
+            background: #e0e7ff;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            color: #3730a3;
+        }
+
+        .welcome-message {
+            background: #dbeafe;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 11 · Events & Event Delegation</h1>
+        <div class="sub">Learn addEventListener, event object, form submission, and event delegation</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Homework Tasks</h3>
+
+        <!-- Task 1: Click Counter -->
+        <div class="expandable-card" id="hwTask1" data-log-task="counter">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Click Counter</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Grab the <code>#counter-btn</code> button and the <code>#count</code> span.</li>
+                    <li>On every click, increment a counter variable and update the span's textContent.</li>
+                    <li><strong>Bonus:</strong> after 10 clicks, change the button's text to "Stop clicking!".</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="counter-demo-btn">Click me</button>
+                    <p>Clicks: <span id="count-demo" class="count-display">0</span></p>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outCounter"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Live Input Preview -->
+        <div class="expandable-card" id="hwTask2" data-log-task="preview">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 2</span>
+                    <span>Live Input Preview</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Grab the <code>#live-input</code> and <code>#preview</code>.</li>
+                    <li>On every keystroke, copy the current value into the preview (use the <code>input</code> event).</li>
+                    <li><strong>Bonus:</strong> if the input is empty, show "Start typing..." in the preview.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <input id="live-input-demo" placeholder="Type something..." />
+                    <div id="preview-demo" class="input-preview">Start typing...</div>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPreview"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Form preventDefault -->
+        <div class="expandable-card" id="hwTask3" data-log-task="form">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 3</span>
+                    <span>Form Prevent Default</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Grab the <code>#reg-form</code> form, <code>#name-field</code> input, and <code>#welcome</code> paragraph.</li>
+                    <li>On submit, prevent the default page reload.</li>
+                    <li>Read the input value, and set the welcome paragraph to <code>"Welcome, &lt;name&gt;!"</code> using template literals.</li>
+                    <li><strong>Bonus:</strong> if the name field is empty, show "Please enter your name" instead.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <form id="reg-form-demo">
+                        <input id="name-field-demo" placeholder="Your name" />
+                        <button type="submit">Submit</button>
+                    </form>
+                    <div id="welcome-demo" class="welcome-message"></div>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outForm"></div>
+            </div>
+        </div>
+
+        <!-- Task 4: Bonus Event Delegation on List -->
+        <div class="expandable-card" id="hwTask4" data-log-task="delegation">
+            <div class="card-header" id="hdr4">
+                <div class="card-title">
+                    <span class="hw-task-badge">BONUS</span>
+                    <span>Event Delegation on List</span>
+                </div>
+                <div class="toggle-icon" id="icon4">▼</div>
+            </div>
+            <div class="card-content" id="content4">
+                <ul class="hw-instructions">
+                    <li>Grab the <code>#todo-list</code> parent.</li>
+                    <li>Attach ONE click listener that toggles the <code>done</code> class on whichever <code>&lt;li&gt;</code> was clicked.</li>
+                    <li>Use <code>e.target.tagName === "LI"</code> to filter.</li>
+                    <li><strong>Bonus:</strong> programmatically add a new <code>&lt;li&gt;</code> to the list with createElement. Confirm clicking it also toggles correctly.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <ul id="todo-list-demo" class="todo-list">
+                        <li>Buy milk</li>
+                        <li>Walk dog</li>
+                        <li>Pay bills</li>
+                    </ul>
+                    <button id="add-todo-demo">Add New Task</button>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outDelegation"></div>
+            </div>
+        </div>
+
+        <!-- HOMEWORK Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="hw-task-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Build a button that, when clicked, changes the page background to a random color (use <code>Math.random()</code> for RGB).</li>
+                    <li>Build an input field that turns red if the value is shorter than 3 characters, green otherwise. Live, on input.</li>
+                    <li>Build a form with two number inputs and a submit button. On submit (with preventDefault) show their sum below.</li>
+                    <li>Build a list of 5 items. Use event delegation so clicking any item logs its text. Add a 6th item dynamically and verify it works.</li>
+                    <li>📖 Read: <a href="https://javascript.info/introduction-browser-events" target="_blank">javascript.info/introduction-browser-events</a> and <a href="https://javascript.info/event-delegation" target="_blank">javascript.info/event-delegation</a>.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see the explanation below! All demos are interactive.</footer>
+</div>
+
+<script src="/day11/script.js"></script>
+</body>
+</html>

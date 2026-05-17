@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 8 · Objects & Destructuring</title>
+    <link rel="stylesheet" href="../style.css">
+    <!-- <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .hw-task-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .hw-note {
+            background: #fef3c7;
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: #92400e;
+            border-left: 3px solid #f59e0b;
+        }
+    </style> -->
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 8 · Objects & Destructuring</h1>
+        <div class="sub">Learn object properties, methods, this keyword, and destructuring assignment</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Homework Tasks</h3>
+
+        <!-- Task 1: Build a Student Object -->
+        <div class="expandable-card" id="hwTask1" data-log-task="student">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Build a Student Object</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Create an object <code>student</code> with: <code>name = "Anaya"</code>, <code>age = 21</code>, <code>city = "Jaipur"</code>, <code>course = "B.Tech"</code>, <code>marks = [85, 90, 78]</code>.</li>
+                    <li>Log the student. Then log just the name, age, and the FIRST mark using dot notation.</li>
+                    <li>Add a new property <code>email = "anaya@example.com"</code>. Update age to 22. Delete city.</li>
+                    <li>Log the student again to confirm changes.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outStudent"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Method with this -->
+        <div class="expandable-card" id="hwTask2" data-log-task="bank">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 2</span>
+                    <span>Bank Account with Methods (this)</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Create an object <code>bankAccount</code> with: <code>holder = "Aarav"</code>, <code>balance = 5000</code>.</li>
+                    <li>Add a method <code>deposit(amount)</code> that adds to the balance and returns the new balance.</li>
+                    <li>Add a method <code>withdraw(amount)</code> that subtracts (only if balance is enough) and returns the new balance, or returns <code>"Insufficient funds"</code>.</li>
+                    <li>Test: deposit 1000, withdraw 2000, withdraw 10000.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outBank"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Destructuring -->
+        <div class="expandable-card" id="hwTask3" data-log-task="destructure">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 3</span>
+                    <span>Destructuring Assignment</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Use this object: <code>const product = { id: 101, name: "Laptop", price: 60000, brand: "Dell", stock: 5 };</code></li>
+                    <li>Destructure <code>name</code> and <code>price</code> into variables and log them.</li>
+                    <li>Destructure <code>brand</code> but rename it to <code>make</code>. Log it.</li>
+                    <li>Destructure <code>warranty</code> with a default value of <code>"1 year"</code> (since the property doesn't exist). Log it.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outDestructure"></div>
+            </div>
+        </div>
+
+        <!-- Task 4: Bonus - Object as Iterable -->
+        <div class="expandable-card" id="hwTask4" data-log-task="iterable">
+            <div class="card-header" id="hdr4">
+                <div class="card-title">
+                    <span class="hw-task-badge">BONUS</span>
+                    <span>Object as Iterable (keys, values, entries)</span>
+                </div>
+                <div class="toggle-icon" id="icon4">▼</div>
+            </div>
+            <div class="card-content" id="content4">
+                <ul class="hw-instructions">
+                    <li>Use the <code>student</code> object from Task 1 (after modifications).</li>
+                    <li>Use <code>Object.keys</code> to log all keys.</li>
+                    <li>Use <code>Object.values</code> to log all values.</li>
+                    <li>Use <code>Object.entries</code> with <code>forEach</code> to log each property as <code>"key: value"</code>.</li>
+                    <li><strong>Bonus:</strong> count how many properties the object has.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outIterable"></div>
+            </div>
+        </div>
+
+        <!-- HOMEWORK Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="hw-task-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Create an object <code>book</code> with <code>title</code>, <code>author</code>, <code>year</code>, and <code>pages</code>. Log the title using bracket notation with a variable key.</li>
+                    <li>Add a method <code>summary()</code> that returns <code>"&lt;title&gt; by &lt;author&gt; (&lt;year&gt;)"</code> using template literals and <code>this</code>.</li>
+                    <li>Use <code>Object.entries</code> and <code>forEach</code> to print every property of any object you have.</li>
+                    <li>Take an object, copy it with spread, modify the copy, and verify the original is unchanged.</li>
+                    <li>📖 Read: <a href="https://javascript.info/object" target="_blank">javascript.info/object</a> and <a href="https://javascript.info/destructuring-assignment" target="_blank">javascript.info/destructuring-assignment</a>.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see its output in the console and below!</footer>
+</div>
+<script src="/day8/script.js"></script>
+</body>
+</html>

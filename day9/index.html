@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 9 · Template Literals & Destructuring</title>
+    <link rel="stylesheet" href="../style.css">
+    <!-- <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .hw-task-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .hw-note {
+            background: #fef3c7;
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: #92400e;
+            border-left: 3px solid #f59e0b;
+        }
+    </style> -->
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 9 · Template Literals & Destructuring</h1>
+        <div class="sub">Learn template literals, array/object destructuring, rest parameters, and spread operator</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Homework Tasks</h3>
+
+        <!-- Task 1: Template Literal Sentence Builder -->
+        <div class="expandable-card" id="hwTask1" data-log-task="template">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Template Literal Sentence Builder</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Declare: <code>const item = "Laptop";</code>, <code>const price = 60000;</code>, <code>const tax = 0.18;</code></li>
+                    <li>Use a template literal to build the sentence: <code>"The Laptop costs ₹60000 + ₹10800 GST = ₹70800."</code></li>
+                    <li>Compute the GST and total inside the template literal — don't pre-compute.</li>
+                    <li><strong>Bonus:</strong> include a multiline version that puts each part on its own line.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outTemplate"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Array + Object Destructuring -->
+        <div class="expandable-card" id="hwTask2" data-log-task="destructure">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 2</span>
+                    <span>Array + Object Destructuring</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Use this array: <code>const scores = [88, 75, 92, 60, 45];</code></li>
+                    <li>Destructure the first two values into <code>top</code> and <code>second</code>. Collect the rest into <code>others</code>.</li>
+                    <li>Use this object: <code>const user = { name: "Anaya", age: 21, address: { city: "Jaipur", pincode: "302001" } };</code></li>
+                    <li>Destructure <code>name</code>, rename <code>age</code> to <code>userAge</code>, and pull out <code>city</code> from the nested address.</li>
+                    <li>Log all extracted variables.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outDestructure"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Rest Parameters -->
+        <div class="expandable-card" id="hwTask3" data-log-task="restparams">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 3</span>
+                    <span>Rest Parameters</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Write a function <code>sumAll(...numbers)</code> that returns the total of all numbers passed.</li>
+                    <li>Test with <code>sumAll(1, 2, 3)</code>, <code>sumAll(10, 20, 30, 40)</code>, <code>sumAll()</code>.</li>
+                    <li>Write a function <code>joinNames(separator, ...names)</code> that joins all names using the separator.</li>
+                    <li>Test: <code>joinNames(", ", "Priya", "Aarav", "Riya")</code> should give <code>"Priya, Aarav, Riya"</code>.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outRestParams"></div>
+            </div>
+        </div>
+
+        <!-- Task 4: Bonus - Spread to Merge Settings -->
+        <div class="expandable-card" id="hwTask4" data-log-task="spread">
+            <div class="card-header" id="hdr4">
+                <div class="card-title">
+                    <span class="hw-task-badge">BONUS</span>
+                    <span>Spread to Merge Settings</span>
+                </div>
+                <div class="toggle-icon" id="icon4">▼</div>
+            </div>
+            <div class="card-content" id="content4">
+                <ul class="hw-instructions">
+                    <li>Declare: <code>const defaults = { theme: "light", lang: "en", notifications: true };</code></li>
+                    <li>Declare: <code>const userPrefs = { theme: "dark", fontSize: 16 };</code></li>
+                    <li>Use object spread to merge them so user preferences override defaults but unchanged defaults remain.</li>
+                    <li>Log the result.</li>
+                    <li><strong>Bonus:</strong> write a function <code>applyPrefs(defaults, prefs)</code> that does this for any pair of objects using spread.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outSpread"></div>
+            </div>
+        </div>
+
+        <!-- HOMEWORK Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="hw-task-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Take an object <code>{ first: "Priya", last: "Sharma", city: "Jaipur" }</code> and use template literals to print <code>"Priya Sharma from Jaipur"</code>.</li>
+                    <li>Use array destructuring with rest to split <code>[1,2,3,4,5,6]</code> into <code>[head, ...tail]</code>. Log both.</li>
+                    <li>Write a function <code>multiply(...nums)</code> using rest and reduce that multiplies any number of arguments.</li>
+                    <li>Use object spread to update one property of an object without mutating the original.</li>
+                    <!-- <li>📖 Read: <a href="https://javascript.info/template-literals" target="_blank">javascript.info/template-literals</a> and <a href="https://javascript.info/destructuring-assignment" target="_blank">javascript.info/destructuring-assignment</a>.</li> -->
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see its output in the console and below!</footer>
+</div>
+<script src="/day9/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5. Loops and iterations</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 4 · Loops & Iteration</h1>
+        <div class="sub">Learn for...of, for...in, while loops, and iteration methods</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK SECTION - Multiple Tasks -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Homework Tasks</h3>
+
+        <!-- Task 1: Multiplication Table -->
+        <div class="expandable-card" id="hwTask1" data-log-task="multiplication">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Multiplication Table (for loop)</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Use a <code>for</code> loop to print the multiplication table of 7 from 1 to 10.</li>
+                    <li>Format: <code>7 x 1 = 7, 7 x 2 = 14, ..., 7 x 10 = 70</code></li>
+                    <li>Use template literals (backticks) for cleaner string formatting.</li>
+                    <li><strong>Bonus:</strong> print only the EVEN multiples of 7 (use <code>continue</code> or modify the step).</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outMultiplication"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Sum with while -->
+        <div class="expandable-card" id="hwTask2" data-log-task="sumwhile">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 2</span>
+                    <span>Sum with while loop</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Use a <code>while</code> loop to calculate the sum of all numbers from 1 to 100.</li>
+                    <li>Start with <code>let sum = 0;</code> and <code>let i = 1;</code></li>
+                    <li>After the loop, log the final sum.</li>
+                    <li><strong>Bonus:</strong> change the loop to sum only ODD numbers from 1 to 100.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outSumWhile"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: for...of with Names -->
+        <div class="expandable-card" id="hwTask3" data-log-task="forofnames">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 3</span>
+                    <span>for...of with Names</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Declare an array: <code>const names = ["Priya", "Aarav", "Riya", "Kabir", "Anaya"];</code></li>
+                    <li>Use <code>for...of</code> to log each name.</li>
+                    <li>Then, in a SECOND loop, count how many names are longer than 4 characters and log the count.</li>
+                    <li><strong>Bonus:</strong> use <code>for...of</code> on the string <code>"Jaipur"</code> to log each character.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outForOfNames"></div>
+            </div>
+        </div>
+
+        <!-- Task 4: Object Inspector with for...in -->
+        <div class="expandable-card" id="hwTask4" data-log-task="objectinspector">
+            <div class="card-header" id="hdr4">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 4</span>
+                    <span>Object Inspector (for...in)</span>
+                </div>
+                <div class="toggle-icon" id="icon4">▼</div>
+            </div>
+            <div class="card-content" id="content4">
+                <ul class="hw-instructions">
+                    <li>Declare an object: <code>const student = { name: "Anaya", age: 21, city: "Jaipur", course: "B.Tech" };</code></li>
+                    <li>Use <code>for...in</code> to log every key and its value in the format <code>key: value</code>.</li>
+                    <li><strong>Bonus:</strong> count how many properties the object has and log the count.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outObjectInspector"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see its output in the console and below!</footer>
+</div>
+<script src="/day5/script.js"></script>
+</body>
+</html>

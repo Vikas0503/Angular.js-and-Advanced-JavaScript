@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 12 · Error Handling & Modules (Final Session)</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .hw-task-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .final-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .demo-area h4 {
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .error-demo {
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .error-type {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.3rem;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .syntax-error { background: #fee2e2; color: #991b1b; }
+        .runtime-error { background: #fef3c7; color: #92400e; }
+        .logic-error { background: #dbeafe; color: #1e40af; }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        input {
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            margin: 0.25rem;
+        }
+
+        .module-note {
+            background: #dbeafe;
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            margin-top: 0.8rem;
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 12 · Error Handling & Modules <span style="font-size: 0.8rem;">★ FINAL SESSION</span></h1>
+        <div class="sub">Learn try/catch/finally, throw custom errors, and ES6 modules (export/import)</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Homework Tasks</h3>
+
+        <!-- Task 1: Safe JSON Parse -->
+        <div class="expandable-card" id="hwTask1" data-log-task="jsonparse">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Safe JSON Parse</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Write a function <code>safeParse(str)</code> that uses <code>try/catch</code> around <code>JSON.parse(str)</code>.</li>
+                    <li>If parsing succeeds, return the parsed object.</li>
+                    <li>If it fails, log "Invalid JSON:" plus the error message, and return <code>null</code>.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="test-valid-json">Test Valid JSON: {"name":"Priya"}</button>
+                    <button id="test-invalid-json">Test Invalid JSON: {"name":"Priya"</button>
+                    <div id="json-result" class="error-demo" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outJsonParse"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Throw on Bad Age -->
+        <div class="expandable-card" id="hwTask2" data-log-task="badage">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 2</span>
+                    <span>Throw on Bad Age</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Write <code>setAge(age)</code> that throws Error if not a number or out of range (0-120).</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="test-age-25">Test setAge(25)</button>
+                    <button id="test-age-string">Test setAge("twenty")</button>
+                    <button id="test-age-200">Test setAge(200)</button>
+                    <div id="age-result" class="error-demo" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outBadAge"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Custom ValidationError on Email -->
+        <div class="expandable-card" id="hwTask3" data-log-task="validation">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 3</span>
+                    <span>Custom ValidationError</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Define <code>class ValidationError extends Error</code> with <code>this.name = "ValidationError"</code>.</li>
+                    <li>Write <code>validateEmail(email)</code> that throws ValidationError if email lacks "@".</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="test-email-valid">Test valid email: priya@example.com</button>
+                    <button id="test-email-invalid">Test invalid: priya-no-at</button>
+                    <div id="email-result" class="error-demo" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outValidation"></div>
+            </div>
+        </div>
+
+        <!-- Task 4: Modules Demo -->
+        <div class="expandable-card" id="hwTask4" data-log-task="modules">
+            <div class="card-header" id="hdr4">
+                <div class="card-title">
+                    <span class="hw-task-badge final-badge">★ MODULES</span>
+                    <span>Two-File Module Setup</span>
+                </div>
+                <div class="toggle-icon" id="icon4">▼</div>
+            </div>
+            <div class="card-content" id="content4">
+                <ul class="hw-instructions">
+                    <li>Create <code>mathUtils.js</code> with named exports: <code>PI</code>, <code>add()</code>, <code>multiply()</code>.</li>
+                    <li>Create <code>formatUtils.js</code> with default export <code>formatPrice()</code>.</li>
+                    <li>Create <code>app.js</code> that imports and uses them.</li>
+                </ul>
+                <div class="module-note">
+                    <strong>⚠️ Important:</strong> Modules require a local server! They won't work with file:// protocol.<br>
+                    The code below shows the implementation. To test modules, use VS Code Live Server or run: <code>npx serve .</code>
+                </div>
+                <div class="output-label">Module Code Examples</div>
+                <div class="output-console" id="outModules"></div>
+            </div>
+        </div>
+
+        <!-- HOMEWORK Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="hw-task-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Build <code>safeDivide(a, b)</code> that throws on division by zero.</li>
+                    <li>Define <code>NotFoundError extends Error</code>. Write <code>getUserById(id)</code> that throws it for ids not 1,2,3.</li>
+                    <li>Split a calculator into two files: <code>calc.js</code> with named exports and <code>app.js</code> that imports them.</li>
+                    <li>Add a default export to <code>calc.js</code> — a <code>calculate(op, a, b)</code> function.</li>
+                    <li>📖 Read: <a href="https://javascript.info/try-catch" target="_blank">javascript.info/try-catch</a> and <a href="https://javascript.info/modules-intro" target="_blank">javascript.info/modules-intro</a>.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see the explanation below! 🎉 This is the final session of Basic JavaScript!</footer>
+</div>
+
+<script src="/day12/script.js"></script>
+</body>
+</html>

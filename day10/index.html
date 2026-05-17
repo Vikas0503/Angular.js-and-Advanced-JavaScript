@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10 · DOM Manipulation</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {  
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .hw-task-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .demo-area h4 {
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        .card-demo {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.8rem;
+            padding: 0.8rem;
+            background: white;
+            margin-top: 0.5rem;
+        }
+
+        .card-demo h3 {
+            color: #1e293b;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>📘 Day 10 · DOM Manipulation</h1>
+        <div class="sub">Learn selecting elements, modifying styles, building lists, and creating elements dynamically</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Homework Tasks</h3>
+
+        <!-- Task 1: Select and Change Text -->
+        <div class="expandable-card" id="hwTask1" data-log-task="selectchange">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 1</span>
+                    <span>Select and Change Text</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Use <code>document.querySelector</code> to grab the <code>#title</code> element.</li>
+                    <li>Change its <code>textContent</code> to <code>"Hello, &lt;your name&gt;!"</code>.</li>
+                    <li>Change its inline <code>style.color</code> to <code>"crimson"</code>.</li>
+                    <li><strong>Bonus:</strong> also change its <code>style.fontFamily</code> to <code>"Georgia, serif"</code>.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area" id="demo1">
+                    <h4>Title Element:</h4>
+                    <h1 id="demo-title">Original Title</h1>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outSelectChange"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Toggle Dark Theme Class -->
+        <div class="expandable-card" id="hwTask2" data-log-task="darktheme">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 2</span>
+                    <span>Toggle Dark Theme Class</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Grab the <code>#theme-btn</code> button.</li>
+                    <li>Use <code>document.body.classList.toggle("dark")</code> to add/remove the dark class on the body.</li>
+                    <li>Run it twice in your script and observe the page flip.</li>
+                    <li><strong>Bonus:</strong> log whether the class is currently present using <code>contains</code>.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="theme-demo-btn">Toggle Theme</button>
+                    <p style="margin-top: 0.5rem;">Click the button to toggle dark mode on this card!</p>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outDarkTheme"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Build a List Dynamically -->
+        <div class="expandable-card" id="hwTask3" data-log-task="buildlist">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="hw-task-badge">TASK 3</span>
+                    <span>Build a List Dynamically</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Declare: <code>const names = ["Priya", "Aarav", "Riya", "Kabir"];</code></li>
+                    <li>Grab the <code>#names-list</code> element.</li>
+                    <li>For each name, create an <code>&lt;li&gt;</code>, set its textContent to the name, add the class <code>"name-item"</code>, and append it to the list.</li>
+                    <li><strong>Bonus:</strong> use template literals to set the textContent to <code>"&lt;index&gt;. &lt;name&gt;"</code> (e.g., <code>"1. Priya"</code>).</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <ul id="demo-names-list" style="list-style: none; padding-left: 0;"></ul>
+                    <button id="build-list-btn">Build Names List</button>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outBuildList"></div>
+            </div>
+        </div>
+
+        <!-- Task 4: Bonus - Build a Card -->
+        <div class="expandable-card" id="hwTask4" data-log-task="card">
+            <div class="card-header" id="hdr4">
+                <div class="card-title">
+                    <span class="hw-task-badge">BONUS</span>
+                    <span>Build a Product Card</span>
+                </div>
+                <div class="toggle-icon" id="icon4">▼</div>
+            </div>
+            <div class="card-content" id="content4">
+                <ul class="hw-instructions">
+                    <li>Inside <code>&lt;div id="cards"&gt;&lt;/div&gt;</code>, build a card from this object:</li>
+                    <li><code>const product = { name: "Laptop", price: 60000, brand: "Dell" };</code></li>
+                    <li>Create a <code>&lt;div class="card"&gt;</code> with three child elements: an <code>&lt;h3&gt;</code> for the name, a <code>&lt;p&gt;</code> for the brand, and a <code>&lt;span&gt;</code> for the price formatted as <code>"₹60000"</code>.</li>
+                    <li>Append the card to <code>#cards</code>.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <div id="demo-cards"></div>
+                    <button id="build-card-btn">Build Product Card</button>
+                </div>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outCard"></div>
+            </div>
+        </div>
+
+        <!-- HOMEWORK Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="hw-task-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Add a <code>&lt;p&gt;</code> to a page and change its text three times — once with <code>textContent</code>, once with <code>innerHTML</code> adding a <code>&lt;strong&gt;</code> tag, then back to plain text.</li>
+                    <li>Build a list of 5 items in HTML. Use a JS loop to add the class <code>even</code> to even-indexed items.</li>
+                    <li>Create a button programmatically with <code>createElement</code>, set its text to "Click me", give it an ID and a class, append it to body.</li>
+                    <li>Take an array of 3 product objects (name, price). Build 3 cards from them dynamically.</li>
+                    <li>📖 Read: <a href="https://javascript.info/dom-nodes" target="_blank">javascript.info/dom-nodes</a> and <a href="https://javascript.info/searching-elements-dom" target="_blank">javascript.info/searching-elements-dom</a>.</li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see its output below! The live demos let you interact with the code.</footer>
+</div>
+
+<style>
+    .dark-theme-demo {
+        background: #1e293b;
+        color: #e2e8f0;
+        transition: all 0.3s ease;
+    }
+    
+    .name-item {
+        padding: 4px 8px;
+        margin: 4px 0;
+        background: #f1f5f9;
+        border-radius: 4px;
+        list-style: none;
+    }
+    
+    .product-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 0.8rem;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .product-card h3 {
+        margin-bottom: 0.5rem;
+        color: #1e293b;
+    }
+    
+    .product-card p {
+        color: #64748b;
+        margin-bottom: 0.25rem;
+    }
+    
+    .product-card span {
+        font-weight: bold;
+        color: #667eea;
+    }
+    
+    button {
+        background: #667eea;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        margin-top: 0.5rem;
+    }
+    
+    button:hover {
+        background: #5a67d8;
+    }
+</style>
+
+<script src="/day10/script.js"></script>
+</body>
+</html>
