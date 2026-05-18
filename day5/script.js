@@ -1,5 +1,5 @@
 // ============================================
-// DAY 4 - LOOPS & ITERATION
+// DAY 5 - LOOPS & ITERATION
 // Class Work: for...of, for loop, for...in, while
 // Homework: Multiplication Table, Sum with while, for...of with Names, Object Inspector
 // ============================================
