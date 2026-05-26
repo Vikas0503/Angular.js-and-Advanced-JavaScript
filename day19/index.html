@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Day 7 · Async / Await</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .advanced-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .timer-display {
+            font-family: monospace;
+            font-size: 0.85rem;
+            background: #1e293b;
+            color: #a5f3fc;
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.3rem;
+            display: inline-block;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: #92400e;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>🔥 Advanced Day 7 · Async / Await</h1>
+        <div class="sub">Learn async functions, await, error handling, sequential vs parallel, and the forEach trap</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Hands-On Exercises</h3>
+
+        <!-- Task 1: Convert .then to async/await -->
+        <div class="expandable-card" id="hwTask1" data-log-task="convert">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 1</span>
+                    <span>Convert .then to async/await</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Take a Promise chain and rewrite it as an async function using await and try/catch.</li>
+                    <li>Mock <code>fetchUser</code> and <code>fetchOrders</code> with setTimeout (300ms).</li>
+                    <li>Call <code>showOrders(7)</code> and verify it works.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-convert-demo">Run Convert .then → async/await</button>
+                    <div id="convert-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outConvert"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Sequential vs Parallel Timing -->
+        <div class="expandable-card" id="hwTask2" data-log-task="timing">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 2</span>
+                    <span>Sequential vs Parallel Timing</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Create <code>fetchPrice(id)</code> that takes 500ms to resolve.</li>
+                    <li>Write <code>slow()</code> using separate awaits (sequential).</li>
+                    <li>Write <code>fast()</code> using <code>Promise.all</code> (parallel).</li>
+                    <li>Compare timing: slow ~1500ms, fast ~500ms.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-sequential-demo">Run Sequential (slow)</button>
+                    <button id="run-parallel-demo">Run Parallel (fast)</button>
+                    <div id="timing-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outTiming"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Fix the forEach Trap -->
+        <div class="expandable-card" id="hwTask3" data-log-task="foreach">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 3</span>
+                    <span>Fix the forEach Trap</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Take array <code>ids = [1, 2, 3]</code> and <code>fetchPrice(id)</code> (500ms each).</li>
+                    <li>Show that <code>forEach</code> with async doesn't wait.</li>
+                    <li>Fix two ways: (1) <code>for...of</code> (sequential), (2) <code>Promise.all + map</code> (parallel).</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-foreach-bug">Run forEach (Buggy)</button>
+                    <button id="run-forof-fix">Run for...of (Sequential Fix)</button>
+                    <button id="run-promiseall-fix">Run Promise.all + map (Parallel Fix)</button>
+                    <div id="foreach-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outForEach"></div>
+            </div>
+        </div>
+
+        <!-- Bonus: Retry with async/await -->
+        <div class="expandable-card" id="hwBonus" data-log-task="retry">
+            <div class="card-header" id="hdrBonus">
+                <div class="card-title">
+                    <span class="advanced-badge">★ BONUS</span>
+                    <span>Retry with async/await</span>
+                </div>
+                <div class="toggle-icon" id="iconBonus">▼</div>
+            </div>
+            <div class="card-content" id="contentBonus">
+                <ul class="hw-instructions">
+                    <li>Write <code>retry(fn, attempts)</code> that calls async fn and retries up to attempts times if it rejects.</li>
+                    <li>Test with a <code>flaky()</code> function that randomly resolves/rejects.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-retry-demo">Run Retry Demo (flaky 50% success)</button>
+                    <div id="retry-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outRetry"></div>
+            </div>
+        </div>
+
+        <!-- Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="advanced-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Convert ALL .then chains from previous homework into async/await with try/catch.</li>
+                    <li>Write <code>fetchAllUsers(ids)</code> that returns array of users in PARALLEL using Promise.all + map.</li>
+                    <li>Write <code>withTimeout(promise, ms)</code> helper that rejects with "timeout" if not settled in ms.</li>
+                    <li>Write async function that loops with for...of over [300, 100, 200] and waits each amount in ms.</li>
+                    <li>📖 Read: <a href="https://javascript.info/async-await" target="_blank">javascript.info/async-await</a></li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see the explanation! Open browser console (F12) to see detailed logs.</footer>
+</div>
+
+<script src="/day19/script.js"></script>
+</body>
+</html>

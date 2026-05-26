@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Day 10 · Map / Set / WeakMap / WeakSet</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .advanced-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .code-demo {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            overflow-x: auto;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: #92400e;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .decision-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .matrix-cell {
+            background: #f1f5f9;
+            padding: 0.3rem;
+            border-radius: 0.3rem;
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>🔥 Advanced Day 10 · Map / Set / WeakMap / WeakSet</h1>
+        <div class="sub">Learn Map, Set, WeakMap, WeakSet — keyed collections, uniqueness, and garbage collection</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Hands-On Exercises</h3>
+
+        <!-- Task 1: Map vs Object -->
+        <div class="expandable-card" id="hwTask1" data-log-task="map">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 1</span>
+                    <span>Map vs Object</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Build a Map of products: "pen" → 50, "book" → 200, "bag" → 800.</li>
+                    <li>Iterate with for...of and log each as "item: ₹price".</li>
+                    <li>Use .has, .get, .delete, .size.</li>
+                    <li>Convert to Object with Object.fromEntries and back to Map.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-map-demo">Run Map Demo</button>
+                    <div id="map-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outMap"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Deduplicate with Set -->
+        <div class="expandable-card" id="hwTask2" data-log-task="set">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 2</span>
+                    <span>Deduplicate with Set</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Take array of student IDs with duplicates: [101, 102, 103, 101, 104, 102, 105].</li>
+                    <li>Use Set to deduplicate and convert back to array.</li>
+                    <li>Count unique IDs.</li>
+                    <li>Test with mixed types [1, "1", 1, true, 1n].</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-set-demo">Run Set Demo</button>
+                    <div id="set-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outSet"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Cache with Map -->
+        <div class="expandable-card" id="hwTask3" data-log-task="cache">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 3</span>
+                    <span>Cache with Map (Memoize)</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Write <code>memoize(fn)</code> using Map instead of object.</li>
+                    <li>Wrap <code>expensiveSquare(n)</code> that logs "computing..." and returns n * n.</li>
+                    <li>Verify calling twice with 5 only logs once.</li>
+                    <li>Check cache.size.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-cache-demo">Run Memoize Demo</button>
+                    <div id="cache-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outCache"></div>
+            </div>
+        </div>
+
+        <!-- Bonus: WeakMap for Private Data -->
+        <div class="expandable-card" id="hwBonus" data-log-task="weakmap">
+            <div class="card-header" id="hdrBonus">
+                <div class="card-title">
+                    <span class="advanced-badge">★ BONUS</span>
+                    <span>WeakMap for Private Data</span>
+                </div>
+                <div class="toggle-icon" id="iconBonus">▼</div>
+            </div>
+            <div class="card-content" id="contentBonus">
+                <ul class="hw-instructions">
+                    <li>Use WeakMap to store metadata for objects without modifying them.</li>
+                    <li>Build attach/get API: attach(obj, data) and get(obj).</li>
+                    <li>Test with two button objects.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-weakmap-demo">Run WeakMap Demo</button>
+                    <div id="weakmap-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outWeakMap"></div>
+            </div>
+        </div>
+
+        <!-- Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="advanced-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Build a "tag counter": given posts array each with .tags array, return Map of tag → count.</li>
+                    <li>Build union(a, b), intersection(a, b), difference(a, b) helpers from scratch using Set.</li>
+                    <li>Convert Map of {name → age} to array of [name, age] pairs sorted by age.</li>
+                    <li>Write DOM event tracker using WeakMap storing click counts per button.</li>
+                    <li>📖 Read: <a href="https://javascript.info/map-set" target="_blank">javascript.info/map-set</a> and <a href="https://javascript.info/weakmap-weakset" target="_blank">javascript.info/weakmap-weakset</a></li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see the explanation! Open browser console (F12) to see detailed logs.</footer>
+</div>
+
+<script src="/day22/script.js"></script>
+</body>
+</html>

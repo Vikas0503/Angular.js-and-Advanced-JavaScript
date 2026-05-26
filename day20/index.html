@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Day 8 · The Event Loop</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .advanced-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .queue-viz {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 0.8rem;
+            border-radius: 0.8rem;
+            font-family: monospace;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+        }
+
+        .queue-item {
+            display: inline-block;
+            background: #334155;
+            padding: 0.2rem 0.5rem;
+            margin: 0.1rem;
+            border-radius: 0.3rem;
+        }
+
+        .microtask { background: #059669; color: white; }
+        .macrotask { background: #d97706; color: white; }
+        .sync { background: #3b82f6; color: white; }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: #92400e;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>🔥 Advanced Day 8 · The Event Loop</h1>
+        <div class="sub">Learn single-threaded execution, microtask vs macrotask queues, and why setTimeout(0) runs last</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Hands-On Exercises</h3>
+
+        <!-- Task 1: Predict the Output -->
+        <div class="expandable-card" id="hwTask1" data-log-task="predict1">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 1</span>
+                    <span>Predict the Output</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Type: <code>console.log("1"); setTimeout(() => console.log("2"), 0); Promise.resolve().then(() => console.log("3")); console.log("4");</code></li>
+                    <li>Predict output BEFORE running.</li>
+                    <li>List which lines were sync, microtask, macrotask.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-predict1-demo">Run Prediction Demo</button>
+                    <div id="predict1-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outPredict1"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Two Promises and a Timer -->
+        <div class="expandable-card" id="hwTask2" data-log-task="predict2">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 2</span>
+                    <span>Two Promises and a Timer</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Run: <code>console.log("A"); setTimeout(() => console.log("B"), 0); Promise.resolve().then(() => console.log("C")).then(() => console.log("D")); queueMicrotask(() => console.log("E")); console.log("F");</code></li>
+                    <li>Predict, run, compare.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-predict2-demo">Run Prediction Demo 2</button>
+                    <div id="predict2-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outPredict2"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Block the Loop -->
+        <div class="expandable-card" id="hwTask3" data-log-task="block">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 3</span>
+                    <span>Block the Loop</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Write <code>blockFor(ms)</code> that busy-waits for ms milliseconds.</li>
+                    <li>Schedule <code>setTimeout(() => console.log("timer"), 100)</code>.</li>
+                    <li>Call <code>blockFor(2000)</code> then <code>console.log("after block")</code>.</li>
+                    <li>Note timer doesn't fire until well after 100ms.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-block-demo">Run Blocking Demo (2 second freeze!)</button>
+                    <div id="block-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outBlock"></div>
+            </div>
+        </div>
+
+        <!-- Bonus: Microtask Storm -->
+        <div class="expandable-card" id="hwBonus" data-log-task="storm">
+            <div class="card-header" id="hdrBonus">
+                <div class="card-title">
+                    <span class="advanced-badge">★ BONUS</span>
+                    <span>Microtask Storm</span>
+                </div>
+                <div class="toggle-icon" id="iconBonus">▼</div>
+            </div>
+            <div class="card-content" id="contentBonus">
+                <ul class="hw-instructions">
+                    <li>Schedule 5 setTimeout(fn, 0) calls.</li>
+                    <li>Inside ONE timer, schedule 3 Promise.resolve().then(...).</li>
+                    <li>Predict output and explain microtask starvation.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-storm-demo">Run Microtask Storm Demo</button>
+                    <div id="storm-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outStorm"></div>
+            </div>
+        </div>
+
+        <!-- Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="advanced-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Visit <a href="https://latentflip.com/loupe" target="_blank">latentflip.com/loupe</a> and watch the event loop visualization.</li>
+                    <li>Build <code>chunk(array, fn, chunkSize)</code> that processes array in chunks, yielding to event loop with setTimeout(0).</li>
+                    <li>Write a snippet proving <code>await</code> is a microtask.</li>
+                    <li>📖 Read: <a href="https://javascript.info/event-loop" target="_blank">javascript.info/event-loop</a></li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see the explanation! Open browser console (F12) to see detailed logs.</footer>
+</div>
+
+<script src="/day20/script.js"></script>
+</body>
+</html>

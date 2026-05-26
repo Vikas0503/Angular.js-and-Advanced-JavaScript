@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Day 2 · Scope & Closures</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .advanced-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .scope-chain-viz {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.8rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .scope-level {
+            border-left: 3px solid #667eea;
+            padding: 0.3rem 0.6rem;
+            margin: 0.2rem 0;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .closure-demo {
+            background: #dbeafe;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin: 0.5rem 0;
+            color: #1e3a8a;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>🔥 Advanced Day 2 · Scope & Closures</h1>
+        <div class="sub">Learn Lexical Scope, Scope Chain, Closures, var-in-loop bug, and IIFEs</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Hands-On Exercises</h3>
+
+        <!-- Task 1: Build a Counter -->
+        <div class="expandable-card" id="hwTask1" data-log-task="counter">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 1</span>
+                    <span>Build a Counter (Closure)</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Write <code>makeCounter()</code> that returns a function returning the next integer starting from 1.</li>
+                    <li>Create TWO independent counters and verify they don't interfere.</li>
+                    <li>Explain WHERE the count variable lives between calls.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-counter-demo">Run Counter Demo</button>
+                    <div id="counter-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outCounter"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Fix the var-in-loop Bug -->
+        <div class="expandable-card" id="hwTask2" data-log-task="varloop">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 2</span>
+                    <span>Fix the var-in-loop Bug</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Type: <code>for (var i = 1; i <= 3; i++) { setTimeout(() => console.log(i), 100); }</code></li>
+                    <li>Predict output, run it, note actual output.</li>
+                    <li>Fix by changing ONE keyword. Verify it logs 1, 2, 3.</li>
+                    <li>Explain why var produced surprising output and let fixes it.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-var-bug">Run var (buggy) version</button>
+                    <button id="run-let-fix">Run let (fixed) version</button>
+                    <div id="varloop-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outVarLoop"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Private Bank Balance -->
+        <div class="expandable-card" id="hwTask3" data-log-task="bank">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 3</span>
+                    <span>Private Bank Balance (Closure)</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Write <code>createAccount(initial)</code> returning object with deposit, withdraw, getBalance methods.</li>
+                    <li>balance must be PRIVATE — not accessible as account.balance.</li>
+                    <li>Test: open account with 1000, deposit 500, withdraw 200, log balance.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-bank-demo">Run Bank Account Demo</button>
+                    <div id="bank-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outBank"></div>
+            </div>
+        </div>
+
+        <!-- Bonus: Build a Memoizer -->
+        <div class="expandable-card" id="hwBonus" data-log-task="memoize">
+            <div class="card-header" id="hdrBonus">
+                <div class="card-title">
+                    <span class="advanced-badge">★ BONUS</span>
+                    <span>Build a Memoizer (Closure Cache)</span>
+                </div>
+                <div class="toggle-icon" id="iconBonus">▼</div>
+            </div>
+            <div class="card-content" id="contentBonus">
+                <ul class="hw-instructions">
+                    <li>Write <code>memoize(fn)</code> that caches results by argument value.</li>
+                    <li>Use it to wrap <code>expensiveSquare(n)</code> that logs "computing..."</li>
+                    <li>Call memoized version with 5 twice, then 10 once, then 5 again.</li>
+                    <li>Note when the log fires and explain where the cache lives.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-memoize-demo">Run Memoizer Demo</button>
+                    <div id="memoize-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outMemoize"></div>
+            </div>
+        </div>
+
+        <!-- Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="advanced-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Write <code>multiplier(factor)</code> returning function multiplying its argument by factor.</li>
+                    <li>Create <code>double = multiplier(2)</code> and <code>triple = multiplier(3)</code>. Verify both work independently.</li>
+                    <li>Re-do var-in-loop bug with <code>for...of</code> over [10,20,30] and setTimeout. Use let.</li>
+                    <li>Add transactionCount private variable to bank account. Add <code>getTransactionCount()</code> method.</li>
+                    <li>Write <code>once(fn)</code> that only runs the FIRST time it's called.</li>
+                    <li>📖 Read: <a href="https://javascript.info/closure" target="_blank">javascript.info/closure</a></li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see the explanation! Open browser console (F12) to see detailed logs.</footer>
+</div>
+
+<script src="/day14/script.js"></script>
+</body>
+</html>

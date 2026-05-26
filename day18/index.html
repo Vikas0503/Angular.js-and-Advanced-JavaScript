@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Day 6 · Async: Callbacks & Promises</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .advanced-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: #92400e;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>🔥 Advanced Day 6 · Async: Callbacks & Promises</h1>
+        <div class="sub">Learn sync vs async, callbacks, callback hell, Promises, and Promise combinators</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Hands-On Exercises</h3>
+
+        <!-- Task 1: Sync vs Async Output -->
+        <div class="expandable-card" id="hwTask1" data-log-task="syncasync">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 1</span>
+                    <span>Sync vs Async Output Prediction</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Predict output order of: <code>console.log("A"); setTimeout(() => console.log("B"), 0); console.log("C"); Promise.resolve().then(() => console.log("D"));</code></li>
+                    <li>Run and compare actual order.</li>
+                    <li>Explain why D comes before B.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-syncasync-demo">Run Sync/Async Demo</button>
+                    <div id="syncasync-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outSyncAsync"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Promisify a Callback API -->
+        <div class="expandable-card" id="hwTask2" data-log-task="promisify">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 2</span>
+                    <span>Promisify a Callback API</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Take callback-style <code>delayLog(msg, ms, cb)</code> and wrap it in a Promise-returning version.</li>
+                    <li>Chain three logs: "1" after 300ms, then "2" after 200ms, then "3" after 100ms.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-promisify-demo">Run Promisify Demo</button>
+                    <div id="promisify-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outPromisify"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Promise.all in Action -->
+        <div class="expandable-card" id="hwTask3" data-log-task="promiseall">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 3</span>
+                    <span>Promise.all in Action</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Write <code>fetchPrice(item, ms)</code> returning Promise resolving to price object.</li>
+                    <li>Use <code>Promise.all</code> to fetch pen, book, bag in parallel.</li>
+                    <li>Sum the prices and log the total.</li>
+                    <li>Confirm timing is near the SLOWEST item, not the sum.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-promiseall-demo">Run Promise.all Demo</button>
+                    <div id="promiseall-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outPromiseAll"></div>
+            </div>
+        </div>
+
+        <!-- Bonus: Promise.allSettled vs Promise.all -->
+        <div class="expandable-card" id="hwBonus" data-log-task="settled">
+            <div class="card-header" id="hdrBonus">
+                <div class="card-title">
+                    <span class="advanced-badge">★ BONUS</span>
+                    <span>Promise.allSettled vs Promise.all</span>
+                </div>
+                <div class="toggle-icon" id="iconBonus">▼</div>
+            </div>
+            <div class="card-content" id="contentBonus">
+                <ul class="hw-instructions">
+                    <li>Take three promises: resolve, reject, resolve.</li>
+                    <li>Wrap in <code>Promise.all</code> and observe.</li>
+                    <li>Wrap in <code>Promise.allSettled</code> and observe.</li>
+                    <li>Explain when to use each.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-settled-demo">Run allSettled vs all Demo</button>
+                    <div id="settled-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outSettled"></div>
+            </div>
+        </div>
+
+        <!-- Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="advanced-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Write <code>wait(ms)</code> returning Promise resolving after ms.</li>
+                    <li>Create flaky <code>fetchData(id)</code> that randomly succeeds/rejects (50/50). Chain three sequential .thens with .catch.</li>
+                    <li>Use <code>Promise.race</code> to add 2-second timeout to a fetch.</li>
+                    <li>Use <code>Promise.any</code> with three flaky fetches to return first success.</li>
+                    <li>📖 Read: <a href="https://javascript.info/promise-basics" target="_blank">javascript.info/promise-basics</a> and <a href="https://javascript.info/promise-chaining" target="_blank">javascript.info/promise-chaining</a></li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see the explanation! Open browser console (F12) to see detailed logs.</footer>
+</div>
+
+<script src="/day18/script.js"></script>
+</body>
+</html>

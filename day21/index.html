@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Day 9 · Advanced Array & Object Patterns</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .advanced-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .code-demo {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            overflow-x: auto;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: #92400e;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .success-box {
+            background: #d1fae5;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: #065f46;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>🔥 Advanced Day 9 · Advanced Array & Object Patterns</h1>
+        <div class="sub">Learn shallow vs deep clone, structuredClone, immutable updates, destructuring, computed keys, optional chaining</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Hands-On Exercises</h3>
+
+        <!-- Task 1: Prove Shallow Clone Bug -->
+        <div class="expandable-card" id="hwTask1" data-log-task="shallow">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 1</span>
+                    <span>Prove Shallow Clone Bug</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Create <code>const orig = { name: "Priya", addr: { city: "Jaipur" } }</code>.</li>
+                    <li>Make shallow copy with spread: <code>const copy = { ...orig }</code>.</li>
+                    <li>Mutate <code>copy.addr.city = "Mumbai"</code> and log <code>orig.addr.city</code>.</li>
+                    <li>Use <code>structuredClone(orig)</code> and repeat — confirm orig is untouched.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-shallow-demo">Run Shallow Clone Demo</button>
+                    <button id="run-structure-demo">Run structuredClone Demo</button>
+                    <div id="shallow-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outShallow"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Immutable Nested Update -->
+        <div class="expandable-card" id="hwTask2" data-log-task="immutable">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 2</span>
+                    <span>Immutable Nested Update</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Take: <code>const state = { user: { name: "Priya", prefs: { theme: "light", lang: "en" } } }</code>.</li>
+                    <li>Produce NEW state with <code>prefs.theme = "dark"</code> without mutating original.</li>
+                    <li>Verify original <code>state.user.prefs.theme</code> is still "light".</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-immutable-demo">Run Immutable Update Demo</button>
+                    <div id="immutable-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outImmutable"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Update One Item in an Array -->
+        <div class="expandable-card" id="hwTask3" data-log-task="array">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 3</span>
+                    <span>Update One Item in an Array</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Take: <code>const tasks = [{ id: 1, title: "Learn JS", done: false }, { id: 2, title: "Build app", done: false }]</code>.</li>
+                    <li>Write <code>toggleDone(tasks, id)</code> returning NEW array with matching task's done flipped.</li>
+                    <li>Call twice on same tasks — verify originals never mutate.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-array-demo">Run Array Immutable Update Demo</button>
+                    <div id="array-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outArray"></div>
+            </div>
+        </div>
+
+        <!-- Bonus: Safe Deep Read -->
+        <div class="expandable-card" id="hwBonus" data-log-task="optional">
+            <div class="card-header" id="hdrBonus">
+                <div class="card-title">
+                    <span class="advanced-badge">★ BONUS</span>
+                    <span>Safe Deep Read (Optional Chaining)</span>
+                </div>
+                <div class="toggle-icon" id="iconBonus">▼</div>
+            </div>
+            <div class="card-content" id="contentBonus">
+                <ul class="hw-instructions">
+                    <li>Take partial API response: <code>const data = { user: { name: "Priya", profile: { city: null } } }</code>.</li>
+                    <li>Write expression reading <code>data.user.profile.city</code> falling back to "Unknown".</li>
+                    <li>Write another reading <code>data.user.profile.bio?.length ?? 0</code>.</li>
+                    <li>Test with <code>data = {}</code> — confirm both return fallbacks without crashing.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-optional-demo">Run Optional Chaining Demo</button>
+                    <div id="optional-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outOptional"></div>
+            </div>
+        </div>
+
+        <!-- Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="advanced-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Take a deeply nested object (4 levels) and write a single immutable update that changes a leaf value.</li>
+                    <li>Implement <code>deepFreeze(obj)</code> from scratch. Test with 3-level nested object.</li>
+                    <li>Read MDN's <code>structuredClone</code> page and list 3 things it handles that JSON-clone does not.</li>
+                    <li>Write a <code>pick(obj, keys)</code> helper using destructuring + computed keys.</li>
+                    <li>📖 Read: <a href="https://javascript.info/object-copy" target="_blank">javascript.info/object-copy</a> and <a href="https://javascript.info/optional-chaining" target="_blank">javascript.info/optional-chaining</a></li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see the explanation! Open browser console (F12) to see detailed logs.</footer>
+</div>
+
+<script src="/day21/script.js"></script>
+</body>
+</html>
