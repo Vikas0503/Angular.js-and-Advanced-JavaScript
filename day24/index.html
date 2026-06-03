@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Day 12 · ES Modules in Depth</title>
+    <link rel="stylesheet" href="../style.css">
+    <!-- <style>
+        .stack-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .expandable-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .advanced-badge {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .hw-instructions {
+            margin: 0;
+            padding-left: 1.2rem;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        .hw-instructions li {
+            margin-bottom: 0.5rem;
+        }
+
+        .hw-instructions code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: monospace;
+            color: #d946ef;
+        }
+
+        .output-console {
+            background: #0f172a;
+            color: #a5f3fc;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            margin: 0.8rem 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-left: 4px solid #38bdf8;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a5f;
+            font-size: 0.85rem;
+        }
+
+        .card-header {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card-header:hover {
+            background: #f8fafc;
+        }
+
+        .demo-area {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+
+        .code-demo {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            overflow-x: auto;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .module-note {
+            background: #dbeafe;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            color: #1e3a8a;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+    </style> -->
+</head>
+<body>
+<div class="classroom-wrapper">
+    <div class="class-header">
+        <button type="button" class="back-btn" onclick="goBack()">← Back to Dashboard</button>
+        <h1>🔥 Advanced Day 12 · ES Modules in Depth</h1>
+        <div class="sub">Learn named vs default exports, aliasing, barrels, dynamic imports, live bindings, and circular dependencies</div>
+    </div>
+
+    <!-- CLASS WORK SECTION -->
+    <div class="cards-wrapper">
+        <div class="card" id="classWorkCard">
+            <div class="card-header" id="classWorkHeader">
+                <div class="card-title">
+                    <span>📘</span> Class Work
+                </div>
+                <div class="toggle-icon" id="classWorkIcon">▼</div>
+            </div>
+            <div class="card-content" id="classWorkContent">
+                <div id="classWorkTasks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK TASKS SECTION -->
+    <div class="stack-layout" style="margin-top: 1rem;">
+        <h3 style="color: white; margin-bottom: 0.5rem;">📚 Hands-On Exercises</h3>
+
+        <!-- Task 1: Multiple Named Exports + Barrel -->
+        <div class="expandable-card" id="hwTask1" data-log-task="barrel">
+            <div class="card-header" id="hdr1">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 1</span>
+                    <span>Multiple Named Exports + Barrel</span>
+                </div>
+                <div class="toggle-icon" id="icon1">▼</div>
+            </div>
+            <div class="card-content" id="content1">
+                <ul class="hw-instructions">
+                    <li>Create three files: <code>add.js</code>, <code>multiply.js</code>, <code>divide.js</code> in a <code>math/</code> folder.</li>
+                    <li>Create <code>math/index.js</code> barrel that re-exports all three.</li>
+                    <li>In <code>app.js</code>, import all three from <code>"./math"</code> in a single line.</li>
+                </ul>
+                <div class="output-label">Code Demo</div>
+                <div class="demo-area">
+                    <button id="run-barrel-demo">Show Barrel Pattern Code</button>
+                    <div id="barrel-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outBarrel"></div>
+            </div>
+        </div>
+
+        <!-- Task 2: Default + Named in Same File -->
+        <div class="expandable-card" id="hwTask2" data-log-task="mixed">
+            <div class="card-header" id="hdr2">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 2</span>
+                    <span>Default + Named in Same File</span>
+                </div>
+                <div class="toggle-icon" id="icon2">▼</div>
+            </div>
+            <div class="card-content" id="content2">
+                <ul class="hw-instructions">
+                    <li>Create <code>Button.js</code> with default export <code>Button</code> and named export <code>ButtonStyles</code>.</li>
+                    <li>Import both in a single import statement in another file.</li>
+                </ul>
+                <div class="output-label">Code Demo</div>
+                <div class="demo-area">
+                    <button id="run-mixed-demo">Show Mixed Export Pattern</button>
+                    <div id="mixed-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outMixed"></div>
+            </div>
+        </div>
+
+        <!-- Task 3: Dynamic import() -->
+        <div class="expandable-card" id="hwTask3" data-log-task="dynamic">
+            <div class="card-header" id="hdr3">
+                <div class="card-title">
+                    <span class="advanced-badge">TASK 3</span>
+                    <span>Dynamic import()</span>
+                </div>
+                <div class="toggle-icon" id="icon3">▼</div>
+            </div>
+            <div class="card-content" id="content3">
+                <ul class="hw-instructions">
+                    <li>Create <code>heavy.js</code> that exports a <code>compute()</code> function.</li>
+                    <li>In <code>main.js</code>, use <code>await import("./heavy.js")</code> to load on demand.</li>
+                    <li>Call <code>compute()</code> only when needed.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-dynamic-demo">Load Heavy Module Dynamically</button>
+                    <div id="dynamic-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outDynamic"></div>
+            </div>
+        </div>
+
+        <!-- Bonus: Singleton Cache -->
+        <div class="expandable-card" id="hwBonus" data-log-task="singleton">
+            <div class="card-header" id="hdrBonus">
+                <div class="card-title">
+                    <span class="advanced-badge">★ BONUS</span>
+                    <span>Singleton Cache (Live Bindings)</span>
+                </div>
+                <div class="toggle-icon" id="iconBonus">▼</div>
+            </div>
+            <div class="card-content" id="contentBonus">
+                <ul class="hw-instructions">
+                    <li>Create <code>cache.js</code> exporting a single shared Map as default.</li>
+                    <li>Create <code>userService.js</code> and <code>productService.js</code> that import and use the cache.</li>
+                    <li>In <code>main.js</code>, import the cache directly and verify both services' writes are visible.</li>
+                </ul>
+                <div class="output-label">Live Demo</div>
+                <div class="demo-area">
+                    <button id="run-singleton-demo">Run Singleton Cache Demo</button>
+                    <div id="singleton-result" class="output-console" style="margin-top: 0.5rem;"></div>
+                </div>
+                <div class="output-label">Explanation</div>
+                <div class="output-console" id="outSingleton"></div>
+            </div>
+        </div>
+
+        <!-- Practice Tasks -->
+        <div class="expandable-card" id="hwPractice" data-log-task="practice">
+            <div class="card-header" id="hdrPractice">
+                <div class="card-title">
+                    <span class="advanced-badge">PRACTICE</span>
+                    <span>Additional Practice Tasks</span>
+                </div>
+                <div class="toggle-icon" id="iconPractice">▼</div>
+            </div>
+            <div class="card-content" id="contentPractice">
+                <ul class="hw-instructions">
+                    <li>Take a folder of three small modules and write a barrel index.js for it.</li>
+                    <li>Add a dynamic import() for a feature in a small Vite app.</li>
+                    <li>Build a tiny circular dependency on purpose (a.js ↔ b.js) and observe the bug.</li>
+                    <li>📖 Read: <a href="https://javascript.info/modules-intro" target="_blank">javascript.info/modules-intro</a> and <a href="https://javascript.info/import-export" target="_blank">javascript.info/import-export</a></li>
+                </ul>
+                <div class="output-label">Reference solution output</div>
+                <div class="output-console" id="outPractice"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>💡 Click on any task header to see the explanation! Note: Modules require a server — open via Live Server.</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
