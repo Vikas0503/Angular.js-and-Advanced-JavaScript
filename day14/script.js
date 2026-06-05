@@ -160,9 +160,7 @@ function counterReferenceText() {
 }
 
 function logCounterOnly() {
-    console.clear();
-    console.log("--- Task 1: Build a Counter ---");
-    console.log(counterReferenceText());
+    emitConsoleAnswer(counterReferenceText());
 }
 
 // ============================================
@@ -201,9 +199,7 @@ function varLoopReferenceText() {
 }
 
 function logVarLoopOnly() {
-    console.clear();
-    console.log("--- Task 2: Fix the var-in-loop Bug ---");
-    console.log(varLoopReferenceText());
+    emitConsoleAnswer(varLoopReferenceText());
 }
 
 // ============================================
@@ -262,9 +258,7 @@ function bankReferenceText() {
 }
 
 function logBankOnly() {
-    console.clear();
-    console.log("--- Task 3: Private Bank Balance ---");
-    console.log(bankReferenceText());
+    emitConsoleAnswer(bankReferenceText());
 }
 
 // ============================================
@@ -322,9 +316,7 @@ function memoizeReferenceText() {
 }
 
 function logMemoizeOnly() {
-    console.clear();
-    console.log("--- Bonus: Memoizer ---");
-    console.log(memoizeReferenceText());
+    emitConsoleAnswer(memoizeReferenceText());
 }
 
 // ============================================
@@ -381,9 +373,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -661,17 +651,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 2: Scope & Closures 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Lexical (Static) Scope — determined by where code is written");
-    console.log("• Scope Chain — searches outward only");
-    console.log("• Closures — functions that remember outer variables");
-    console.log("• Practical patterns: Counter, Private Variables, Memoization");
-    console.log("• var-in-loop bug and fix with let");
-    console.log("• IIFE (Immediately Invoked Function Expression)");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see closures and scope in action!");
 });

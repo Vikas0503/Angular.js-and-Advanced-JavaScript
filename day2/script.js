@@ -284,50 +284,6 @@ typeof null → "object" (JavaScript quirk!)`;
         if (homeworkContent) homeworkContent.classList.remove('show');
         if (classWorkIcon) classWorkIcon.textContent = '▼';
         if (homeworkIcon) homeworkIcon.textContent = '▼';
-        
-        // Console logs for demonstration (matching your original code)
-        console.log("=== Day 2 - Variables & Data Types ===");
-        console.log("Hello JavaScript");
-        console.log(42);
-        console.log(3.14);
-        console.log(true);
-        console.log("Name:Rahul", "Age:25");
-        
-        const name = "john";
-        console.log(name);
-        
-        let score = 0;
-        score = 10;
-        score = score + 5;
-        console.log(score);
-        
-        let city;
-        console.log(city);
-        city = "kochi";
-        console.log(city);
-        
-        // Homework console logs
-        console.log("--- Homework Outputs ---");
-        const firstName = "john wick";
-        const age = 24;
-        const isApproved = true;
-        const number = null;
-        let city2;
-        
-        console.log(firstName);
-        console.log(typeof firstName);
-        console.log(age);
-        console.log(typeof age);
-        console.log(isApproved);
-        console.log(typeof isApproved);
-        console.log(number);
-        console.log(typeof number);
-        console.log(city2);
-        console.log(typeof city2);
-        
-        const myName = "    john wick   ";
-        console.log(myName.trim().toUpperCase().length);
-        console.log(myName.includes("gouri"));
     });
     
 // Make goBack available for the inline back button

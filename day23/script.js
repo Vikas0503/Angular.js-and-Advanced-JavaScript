@@ -176,9 +176,7 @@ function manualReferenceText() {
 }
 
 function logManualOnly() {
-    console.clear();
-    console.log("--- Task 1: Manual Iterator Object ---");
-    console.log(manualReferenceText());
+    emitConsoleAnswer(manualReferenceText());
 }
 
 // ============================================
@@ -219,9 +217,7 @@ function generatorReferenceText() {
 }
 
 function logGeneratorOnly() {
-    console.clear();
-    console.log("--- Task 2: Range Generator ---");
-    console.log(generatorReferenceText());
+    emitConsoleAnswer(generatorReferenceText());
 }
 
 // ============================================
@@ -277,9 +273,7 @@ function takeReferenceText() {
 }
 
 function logTakeOnly() {
-    console.clear();
-    console.log("--- Task 3: Take from Infinite Generator ---");
-    console.log(takeReferenceText());
+    emitConsoleAnswer(takeReferenceText());
 }
 
 // ============================================
@@ -325,9 +319,7 @@ function treeReferenceText() {
 }
 
 function logTreeOnly() {
-    console.clear();
-    console.log("--- Bonus: Tree Walk with yield* ---");
-    console.log(treeReferenceText());
+    emitConsoleAnswer(treeReferenceText());
 }
 
 // ============================================
@@ -392,9 +384,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -631,17 +621,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 11: Iterators & Generators 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Iterator protocol — next() returns { value, done }");
-    console.log("• [Symbol.iterator] — make any object iterable");
-    console.log("• Generators (function*) — yield pauses, resumes");
-    console.log("• Infinite sequences — lazy evaluation");
-    console.log("• yield* — delegate to another generator");
-    console.log("• Two-way communication — next(value) sends data back");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see iterators and generators in action!");
 });

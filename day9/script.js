@@ -171,9 +171,7 @@ function templateReferenceText() {
 }
 
 function logTemplateOnly() {
-    console.clear();
-    console.log("--- Task 1: Template Literal Sentence Builder ---");
-    console.log(templateReferenceText());
+    emitConsoleAnswer(templateReferenceText());
 }
 
 // ============================================
@@ -219,9 +217,7 @@ function destructureReferenceText() {
 }
 
 function logDestructureOnly() {
-    console.clear();
-    console.log("--- Task 2: Array + Object Destructuring ---");
-    console.log(destructureReferenceText());
+    emitConsoleAnswer(destructureReferenceText());
 }
 
 // ============================================
@@ -277,9 +273,7 @@ function restParamsReferenceText() {
 }
 
 function logRestParamsOnly() {
-    console.clear();
-    console.log("--- Task 3: Rest Parameters ---");
-    console.log(restParamsReferenceText());
+    emitConsoleAnswer(restParamsReferenceText());
 }
 
 // ============================================
@@ -349,9 +343,7 @@ function spreadReferenceText() {
 }
 
 function logSpreadOnly() {
-    console.clear();
-    console.log("--- Bonus: Spread to Merge Settings ---");
-    console.log(spreadReferenceText());
+    emitConsoleAnswer(spreadReferenceText());
 }
 
 // ============================================
@@ -412,9 +404,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -518,20 +508,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (classWorkIcon) classWorkIcon.textContent = '▼';
     
     wireAccordions();
-    
-    console.log("=== Day 9: Template Literals & Destructuring Ready ===");
-    console.log("");
-    console.log("Class Work examples:");
-    console.log("• Template literals with interpolation and multi-line");
-    console.log("• Array destructuring");
-    console.log("• Object destructuring (nested, rename, default, rest)");
-    console.log("");
-    console.log("Homework Tasks (click to expand):");
-    console.log("• Task 1: Template Literal Sentence Builder");
-    console.log("• Task 2: Array + Object Destructuring");
-    console.log("• Task 3: Rest Parameters");
-    console.log("• Bonus: Spread to Merge Settings");
-    console.log("• Practice: Additional tasks");
 });
 
 // ============================================

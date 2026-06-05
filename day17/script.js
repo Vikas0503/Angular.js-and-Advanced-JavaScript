@@ -185,9 +185,7 @@ function rectangleReferenceText() {
 }
 
 function logRectangleOnly() {
-    console.clear();
-    console.log("--- Task 1: Rectangle Class ---");
-    console.log(rectangleReferenceText());
+    emitConsoleAnswer(rectangleReferenceText());
 }
 
 // ============================================
@@ -251,9 +249,7 @@ function inheritanceReferenceText() {
 }
 
 function logInheritanceOnly() {
-    console.clear();
-    console.log("--- Task 2: Employee & Manager Inheritance ---");
-    console.log(inheritanceReferenceText());
+    emitConsoleAnswer(inheritanceReferenceText());
 }
 
 // ============================================
@@ -309,9 +305,7 @@ function privateReferenceText() {
 }
 
 function logPrivateOnly() {
-    console.clear();
-    console.log("--- Task 3: Counter with Private Field ---");
-    console.log(privateReferenceText());
+    emitConsoleAnswer(privateReferenceText());
 }
 
 // ============================================
@@ -368,9 +362,7 @@ function errorReferenceText() {
 }
 
 function logErrorOnly() {
-    console.clear();
-    console.log("--- Bonus: Custom ValidationError Class ---");
-    console.log(errorReferenceText());
+    emitConsoleAnswer(errorReferenceText());
 }
 
 // ============================================
@@ -428,9 +420,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -679,17 +669,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 5: Classes & OOP 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Class syntax basics (constructor, methods)");
-    console.log("• Getters and setters");
-    console.log("• extends and super for inheritance");
-    console.log("• static methods (belong to class, not instances)");
-    console.log("• Private fields with # (truly private)");
-    console.log("• Custom Error classes extending Error");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see classes and OOP in action!");
 });

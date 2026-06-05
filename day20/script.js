@@ -119,9 +119,7 @@ function predict1ReferenceText() {
 }
 
 function logPredict1Only() {
-    console.clear();
-    console.log("--- Task 1: Predict the Output ---");
-    console.log(predict1ReferenceText());
+    emitConsoleAnswer(predict1ReferenceText());
 }
 
 // ============================================
@@ -158,9 +156,7 @@ function predict2ReferenceText() {
 }
 
 function logPredict2Only() {
-    console.clear();
-    console.log("--- Task 2: Two Promises and a Timer ---");
-    console.log(predict2ReferenceText());
+    emitConsoleAnswer(predict2ReferenceText());
 }
 
 // ============================================
@@ -204,9 +200,7 @@ function blockReferenceText() {
 }
 
 function logBlockOnly() {
-    console.clear();
-    console.log("--- Task 3: Block the Loop ---");
-    console.log(blockReferenceText());
+    emitConsoleAnswer(blockReferenceText());
 }
 
 // ============================================
@@ -240,9 +234,7 @@ function stormReferenceText() {
 }
 
 function logStormOnly() {
-    console.clear();
-    console.log("--- Bonus: Microtask Storm ---");
-    console.log(stormReferenceText());
+    emitConsoleAnswer(stormReferenceText());
 }
 
 // ============================================
@@ -290,9 +282,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -579,17 +569,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up live demos
     setupLiveDemos();
-    
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 8: The Event Loop 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• JavaScript is single-threaded — one call stack");
-    console.log("• Event loop: sync → all microtasks → one macrotask");
-    console.log("• Microtasks: Promise.then, queueMicrotask");
-    console.log("• Macrotasks: setTimeout, setInterval, I/O");
-    console.log("• Don't block the loop — busy-waiting freezes the page");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see the event loop in action!");
 });

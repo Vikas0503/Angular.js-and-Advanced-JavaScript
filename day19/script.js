@@ -165,9 +165,7 @@ function convertReferenceText() {
 }
 
 function logConvertOnly() {
-    console.clear();
-    console.log("--- Task 1: Convert .then to async/await ---");
-    console.log(convertReferenceText());
+    emitConsoleAnswer(convertReferenceText());
 }
 
 // ============================================
@@ -218,9 +216,7 @@ function timingReferenceText() {
 }
 
 function logTimingOnly() {
-    console.clear();
-    console.log("--- Task 2: Sequential vs Parallel Timing ---");
-    console.log(timingReferenceText());
+    emitConsoleAnswer(timingReferenceText());
 }
 
 // ============================================
@@ -282,9 +278,7 @@ function forEachReferenceText() {
 }
 
 function logForEachOnly() {
-    console.clear();
-    console.log("--- Task 3: Fix the forEach Trap ---");
-    console.log(forEachReferenceText());
+    emitConsoleAnswer(forEachReferenceText());
 }
 
 // ============================================
@@ -341,9 +335,7 @@ function retryReferenceText() {
 }
 
 function logRetryOnly() {
-    console.clear();
-    console.log("--- Bonus: Retry with async/await ---");
-    console.log(retryReferenceText());
+    emitConsoleAnswer(retryReferenceText());
 }
 
 // ============================================
@@ -387,9 +379,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -686,16 +676,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 7: Async/Await 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• async functions always return a Promise");
-    console.log("• await pauses execution inside async functions");
-    console.log("• try/catch for async error handling");
-    console.log("• Sequential vs Parallel with Promise.all");
-    console.log("• The forEach trap and how to fix it");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see async/await in action!");
 });

@@ -138,8 +138,8 @@ function predictReferenceText() {
 
 function logPredictOnly() {
     console.clear();
-    console.log("--- Task 1: Predict the this ---");
-    console.log(predictReferenceText());
+    var user = { name: 'Priya', greet: function () { console.log(this.name); } };
+    user.greet();
 }
 
 // ============================================
@@ -213,8 +213,10 @@ function timerReferenceText() {
 
 function logTimerOnly() {
     console.clear();
-    console.log("--- Task 2: Fix the Timer Bug ---");
-    console.log(timerReferenceText());
+    var t = new TimerBind();
+    console.log(t.tick());
+    console.log(t.tick());
+    console.log(t.tick());
 }
 
 // ============================================
@@ -258,8 +260,14 @@ function callApplyReferenceText() {
 
 function logCallApplyOnly() {
     console.clear();
-    console.log("--- Task 3: call / apply / bind ---");
-    console.log(callApplyReferenceText());
+    var person = { name: 'Aarav' };
+    function line(role, city) {
+        console.log(this.name + ' is a ' + role + ' from ' + city);
+    }
+    line.call(person, 'developer', 'Bangalore');
+    line.apply(person, ['designer', 'Mumbai']);
+    var bound = line.bind(person, 'developer');
+    bound('Chennai');
 }
 
 // ============================================
@@ -306,8 +314,15 @@ function arrowVsRegularReferenceText() {
 
 function logArrowOnly() {
     console.clear();
-    console.log("--- Bonus: Arrow vs Regular Method ---");
-    console.log(arrowVsRegularReferenceText());
+    var team = {
+        members: ['Priya', 'Aarav', 'Riya'],
+        printArrow: function () {
+            this.members.forEach((m) => {
+                console.log('Hi ' + m + ', from team ' + this.members.length);
+            });
+        }
+    };
+    team.printArrow();
 }
 
 // ============================================
@@ -351,8 +366,15 @@ function practiceReferenceText() {
 
 function logPracticeOnly() {
     console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    var user = { name: 'Priya', greet: function () { console.log(this.name); } };
+    user.greet();
+    var fn = user.greet;
+    fn();
+    user.greet.call({ name: 'X' });
+    function sum() {
+        return Array.prototype.reduce.call(arguments, function (a, b) { return a + b; }, 0);
+    }
+    console.log(sum.apply(null, [1, 2, 3, 4, 5]));
 }
 
 // ============================================
@@ -706,18 +728,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up live demos
     setupLiveDemos();
-    
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 3: The this Keyword 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• What is this? — determined at call time");
-    console.log("• The 4 Binding Rules: Default, Implicit, Explicit, new");
-    console.log("• call / apply / bind — explicit binding methods");
-    console.log("• Arrow functions — lexical this (no own this)");
-    console.log("• The 'Lost this' bug and three fixes");
-    console.log("• Decision tree for determining this");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see this binding in action!");
 });

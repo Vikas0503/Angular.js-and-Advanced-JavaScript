@@ -122,9 +122,27 @@ function mapReferenceText() {
 }
 
 function logMapOnly() {
-    console.clear();
-    console.log("--- Task 1: Map vs Object ---");
-    console.log(mapReferenceText());
+    var products = new Map([
+        ["pen", 50],
+        ["book", 200],
+        ["bag", 800]
+    ]);
+    var obj = Object.fromEntries(products);
+    var mapAgain = new Map(Object.entries(obj));
+    var output = [];
+
+    for (var [item, price] of products) {
+        output.push(item + ": \u20B9" + price);
+    }
+
+    output.push(products.has("pen"));
+    output.push(products.get("book"));
+    products.delete("bag");
+    output.push(products.size);
+    output.push(JSON.stringify(obj));
+    output.push(mapAgain.size);
+
+    emitConsoleAnswer(output);
 }
 
 // ============================================
@@ -153,9 +171,22 @@ function setReferenceText() {
 }
 
 function logSetOnly() {
-    console.clear();
-    console.log("--- Task 2: Deduplicate with Set ---");
-    console.log(setReferenceText());
+    var ids = [101, 102, 103, 101, 104, 102, 105];
+    var unique = [...new Set(ids)];
+    var mixed = [1, "1", 1, true, 1n];
+    var uniqueMixed = [...new Set(mixed)];
+
+    function formatMixedValue(value) {
+        if (typeof value === "string") return '"' + value + '"';
+        if (typeof value === "bigint") return value.toString() + "n";
+        return String(value);
+    }
+
+    emitConsoleAnswer([
+        "[" + unique.join(", ") + "]",
+        unique.length,
+        "[" + uniqueMixed.map(formatMixedValue).join(", ") + "]"
+    ]);
 }
 
 // ============================================
@@ -208,9 +239,26 @@ function cacheReferenceText() {
 }
 
 function logCacheOnly() {
-    console.clear();
-    console.log("--- Task 3: Cache with Map ---");
-    console.log(cacheReferenceText());
+    var cache = new Map();
+    var output = [];
+
+    function memoSquare(n) {
+        if (cache.has(n)) {
+            output.push("Cache hit for " + n);
+            return cache.get(n);
+        }
+
+        output.push("Computing for " + n + "...");
+        var result = expensiveSquare(n);
+        cache.set(n, result);
+        return result;
+    }
+
+    output.push(memoSquare(5));
+    output.push(memoSquare(5));
+    output.push(cache.size);
+
+    emitConsoleAnswer(output);
 }
 
 // ============================================
@@ -256,9 +304,16 @@ function weakMapReferenceText() {
 }
 
 function logWeakMapOnly() {
-    console.clear();
-    console.log("--- Bonus: WeakMap for Private Data ---");
-    console.log(weakMapReferenceText());
+    var btn1 = { id: "button1" };
+    var btn2 = { id: "button2" };
+
+    attachData(btn1, { clicks: 5 });
+    attachData(btn2, { clicks: 3 });
+
+    emitConsoleAnswer([
+        getData(btn1).clicks,
+        getData(btn2).clicks
+    ]);
 }
 
 // ============================================
@@ -313,9 +368,16 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer([
+        "javascript: 2",
+        "html: 1",
+        "[1, 2, 3, 4]",
+        "[2, 3]",
+        "[1]",
+        "[Aarav, 21]",
+        "[Priya, 24]",
+        "Clicked 1 times"
+    ]);
 }
 
 // ============================================
@@ -593,17 +655,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 10: Map / Set / WeakMap / WeakSet 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Map — any key type, insertion order, size property");
-    console.log("• Object ↔ Map conversion (Object.entries/fromEntries)");
-    console.log("• Set — unique values, deduplication");
-    console.log("• Set operations: union, intersection, difference");
-    console.log("• WeakMap — GC-friendly, object keys only, not iterable");
-    console.log("• WeakSet — same but for values");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see Map/Set/WeakMap in action!");
 });

@@ -143,9 +143,7 @@ function barrelReferenceText() {
 }
 
 function logBarrelOnly() {
-    console.clear();
-    console.log("--- Task 1: Multiple Named Exports + Barrel ---");
-    console.log(barrelReferenceText());
+    emitConsoleAnswer(barrelReferenceText());
 }
 
 // ============================================
@@ -183,9 +181,7 @@ function mixedReferenceText() {
 }
 
 function logMixedOnly() {
-    console.clear();
-    console.log("--- Task 2: Default + Named in Same File ---");
-    console.log(mixedReferenceText());
+    emitConsoleAnswer(mixedReferenceText());
 }
 
 // ============================================
@@ -208,10 +204,8 @@ var heavyModule = null;
 
 async function loadHeavyModule() {
     if (!heavyModule) {
-        console.log("Loading heavy module... (simulated dynamic import)");
         await new Promise(r => setTimeout(r, 500)); // Simulate network delay
         heavyModule = createHeavyModule();
-        console.log("Heavy module loaded!");
     }
     return heavyModule;
 }
@@ -271,9 +265,7 @@ function dynamicReferenceText() {
 }
 
 function logDynamicOnly() {
-    console.clear();
-    console.log("--- Task 3: Dynamic import() ---");
-    console.log(dynamicReferenceText());
+    emitConsoleAnswer(dynamicReferenceText());
 }
 
 // ============================================
@@ -324,9 +316,7 @@ function singletonReferenceText() {
 }
 
 function logSingletonOnly() {
-    console.clear();
-    console.log("--- Bonus: Singleton Cache ---");
-    console.log(singletonReferenceText());
+    emitConsoleAnswer(singletonReferenceText());
 }
 
 // ============================================
@@ -370,9 +360,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -604,22 +592,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up live demos
     setupLiveDemos();
-    
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 12: ES Modules in Depth 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Named vs Default exports — best practices");
-    console.log("• Aliasing (as) and Namespace imports (* as)");
-    console.log("• Barrels — index.js re-exports");
-    console.log("• Dynamic import() — code splitting and lazy loading");
-    console.log("• Live bindings — imports reflect changes");
-    console.log("• Circular dependencies — causes and fixes");
-    console.log("• Bundlers — Webpack, Vite, Rollup, esbuild");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see module patterns in action!");
-    console.log("");
-    console.log("📌 NOTE: In a real project, these modules would be in separate files.");
-    console.log("   This demo shows the patterns conceptually.");
 });

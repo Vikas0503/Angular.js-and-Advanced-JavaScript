@@ -128,9 +128,7 @@ function pureReferenceText() {
 }
 
 function logPureOnly() {
-    console.clear();
-    console.log("--- Task 1: Pure or Impure ---");
-    console.log(pureReferenceText());
+    emitConsoleAnswer(pureReferenceText());
 }
 
 // ============================================
@@ -179,9 +177,7 @@ function pipeReferenceText() {
 }
 
 function logPipeOnly() {
-    console.clear();
-    console.log("--- Task 2: pipe from Scratch ---");
-    console.log(pipeReferenceText());
+    emitConsoleAnswer(pipeReferenceText());
 }
 
 // ============================================
@@ -225,9 +221,7 @@ function curryReferenceText() {
 }
 
 function logCurryOnly() {
-    console.clear();
-    console.log("--- Task 3: Curry ---");
-    console.log(curryReferenceText());
+    emitConsoleAnswer(curryReferenceText());
 }
 
 // ============================================
@@ -268,9 +262,7 @@ function pipelineReferenceText() {
 }
 
 function logPipelineOnly() {
-    console.clear();
-    console.log("--- Bonus: Real Pipeline ---");
-    console.log(pipelineReferenceText());
+    emitConsoleAnswer(pipelineReferenceText());
 }
 
 // ============================================
@@ -317,9 +309,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -567,17 +557,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 13: Functional Programming 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Pure functions — same input → same output, no side effects");
-    console.log("• Side effects at the edges — pure core, impure shell");
-    console.log("• Higher-order functions — take or return functions");
-    console.log("• compose and pipe — function composition");
-    console.log("• Currying — fn(a)(b)(c)");
-    console.log("• Partial application — fixing arguments");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see functional patterns in action!");
 });

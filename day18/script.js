@@ -147,9 +147,7 @@ function syncAsyncReferenceText() {
 }
 
 function logSyncAsyncOnly() {
-    console.clear();
-    console.log("--- Task 1: Sync vs Async Output ---");
-    console.log(syncAsyncReferenceText());
+    emitConsoleAnswer(syncAsyncReferenceText());
 }
 
 // ============================================
@@ -195,9 +193,7 @@ function promisifyReferenceText() {
 }
 
 function logPromisifyOnly() {
-    console.clear();
-    console.log("--- Task 2: Promisify a Callback API ---");
-    console.log(promisifyReferenceText());
+    emitConsoleAnswer(promisifyReferenceText());
 }
 
 // ============================================
@@ -236,9 +232,7 @@ function promiseAllReferenceText() {
 }
 
 function logPromiseAllOnly() {
-    console.clear();
-    console.log("--- Task 3: Promise.all in Action ---");
-    console.log(promiseAllReferenceText());
+    emitConsoleAnswer(promiseAllReferenceText());
 }
 
 // ============================================
@@ -273,9 +267,7 @@ function settledReferenceText() {
 }
 
 function logSettledOnly() {
-    console.clear();
-    console.log("--- Bonus: Promise.allSettled vs Promise.all ---");
-    console.log(settledReferenceText());
+    emitConsoleAnswer(settledReferenceText());
 }
 
 // ============================================
@@ -324,9 +316,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -619,17 +609,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 6: Async: Callbacks & Promises 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Sync vs Async — event loop, microtasks vs macrotasks");
-    console.log("• Callbacks — the original async pattern");
-    console.log("• Callback Hell — the pyramid of doom");
-    console.log("• Promise states — pending, fulfilled, rejected");
-    console.log("• .then / .catch / .finally — promise chaining");
-    console.log("• Promise combinators — all, allSettled, race, any");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see async patterns in action!");
 });

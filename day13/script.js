@@ -123,9 +123,7 @@ function varHoistReferenceText() {
 }
 
 function logVarHoistOnly() {
-    console.clear();
-    console.log("--- Task 1: Predict var hoist ---");
-    console.log(varHoistReferenceText());
+    emitConsoleAnswer(varHoistReferenceText());
 }
 
 // ============================================
@@ -163,9 +161,7 @@ function tdzReferenceText() {
 }
 
 function logTDZOnly() {
-    console.clear();
-    console.log("--- Task 2: Trigger the TDZ ---");
-    console.log(tdzReferenceText());
+    emitConsoleAnswer(tdzReferenceText());
 }
 
 // ============================================
@@ -211,9 +207,7 @@ function funcDecReferenceText() {
 }
 
 function logFuncDecOnly() {
-    console.clear();
-    console.log("--- Task 3: Function declaration vs expression ---");
-    console.log(funcDecReferenceText());
+    emitConsoleAnswer(funcDecReferenceText());
 }
 
 // ============================================
@@ -266,9 +260,7 @@ function callStackReferenceText() {
 }
 
 function logCallStackOnly() {
-    console.clear();
-    console.log("--- Bonus: Call Stack ---");
-    console.log(callStackReferenceText());
+    emitConsoleAnswer(callStackReferenceText());
 }
 
 // ============================================
@@ -312,9 +304,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -568,17 +558,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 1: Execution Context & Hoisting 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Execution Context (Global vs Function)");
-    console.log("• Two Phases: Creation + Execution");
-    console.log("• Call Stack (LIFO)");
-    console.log("• Hoisting - what it actually is");
-    console.log("• var vs let/const + Temporal Dead Zone");
-    console.log("• Function Declarations vs Expressions");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see hoisting and TDZ in action!");
 });

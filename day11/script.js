@@ -91,9 +91,7 @@ function counterReferenceText() {
 }
 
 function logCounterOnly() {
-    console.clear();
-    console.log("--- Task 1: Click Counter ---");
-    console.log(counterReferenceText());
+    emitConsoleAnswer(counterReferenceText());
 }
 
 // ============================================
@@ -119,9 +117,7 @@ function previewReferenceText() {
 }
 
 function logPreviewOnly() {
-    console.clear();
-    console.log("--- Task 2: Live Input Preview ---");
-    console.log(previewReferenceText());
+    emitConsoleAnswer(previewReferenceText());
 }
 
 // ============================================
@@ -148,9 +144,7 @@ function formReferenceText() {
 }
 
 function logFormOnly() {
-    console.clear();
-    console.log("--- Task 3: Form preventDefault ---");
-    console.log(formReferenceText());
+    emitConsoleAnswer(formReferenceText());
 }
 
 // ============================================
@@ -177,9 +171,7 @@ function delegationReferenceText() {
 }
 
 function logDelegationOnly() {
-    console.clear();
-    console.log("--- Bonus: Event Delegation on List ---");
-    console.log(delegationReferenceText());
+    emitConsoleAnswer(delegationReferenceText());
 }
 
 // ============================================
@@ -223,9 +215,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -422,24 +412,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up live demos
     setupLiveDemos();
-    
-    // Console welcome message
-    console.log("=== Day 11: Events & Event Delegation Ready ===");
-    console.log("");
-    console.log("Class Work examples:");
-    console.log("• addEventListener for multiple handlers");
-    console.log("• Event object properties (type, target, clientX/Y)");
-    console.log("• Event delegation pattern");
-    console.log("");
-    console.log("Homework Tasks (click to expand):");
-    console.log("• Task 1: Click Counter");
-    console.log("• Task 2: Live Input Preview");
-    console.log("• Task 3: Form preventDefault");
-    console.log("• Bonus: Event Delegation on List");
-    console.log("• Practice: Additional tasks");
-    console.log("");
-    console.log("💡 Click on any homework task header to see the explanation!");
-    console.log("🎮 Use the interactive demos to test the code in action!");
 });
 
 // ============================================

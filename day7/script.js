@@ -118,9 +118,7 @@ function cartReferenceText() {
 }
 
 function logCartOnly() {
-    console.clear();
-    console.log("--- Task 1: Cart Manipulation ---");
-    console.log(cartReferenceText());
+    emitConsoleAnswer(cartReferenceText());
 }
 
 // ============================================
@@ -176,9 +174,7 @@ function scoresReferenceText() {
 }
 
 function logScoresOnly() {
-    console.clear();
-    console.log("--- Task 2: Filter Passing Scores ---");
-    console.log(scoresReferenceText());
+    emitConsoleAnswer(scoresReferenceText());
 }
 
 // ============================================
@@ -226,9 +222,7 @@ function gstReferenceText() {
 }
 
 function logGSTOnly() {
-    console.clear();
-    console.log("--- Task 3: Map Prices with GST ---");
-    console.log(gstReferenceText());
+    emitConsoleAnswer(gstReferenceText());
 }
 
 // ============================================
@@ -284,9 +278,7 @@ function reduceReferenceText() {
 }
 
 function logReduceOnly() {
-    console.clear();
-    console.log("--- Task 4: Reduce to Total & Highest Expense ---");
-    console.log(reduceReferenceText());
+    emitConsoleAnswer(reduceReferenceText());
 }
 
 // ============================================
@@ -356,9 +348,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -465,23 +455,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up homework task accordions
     wireAccordions();
     
-    // Console welcome message
-    console.log("=== Day 7: Array Methods Ready ===");
-    console.log("");
-    console.log("📘 Class Work examples:");
-    console.log("• filter() - create array of passing scores");
-    console.log("• find() - get first failing score");
-    console.log("• some() - check if any score > 90");
-    console.log("• every() - check if all scores > 60");
-    console.log("");
-    console.log("📚 Homework Tasks (click to expand):");
-    console.log("• Task 1: Cart Manipulation (push, unshift, pop, splice)");
-    console.log("• Task 2: Filter Passing Scores (filter, find, every, some)");
-    console.log("• Task 3: Map Prices with GST");
-    console.log("• Task 4: Reduce to Total & Highest Expense");
-    console.log("• Practice: Additional tasks");
-    console.log("");
-    console.log("💡 Click on any homework task header to see its output!");
 });
 
 // ============================================

@@ -147,9 +147,7 @@ function inspectReferenceText() {
 }
 
 function logInspectOnly() {
-    console.clear();
-    console.log("--- Task 1: Inspect a Prototype Chain ---");
-    console.log(inspectReferenceText());
+    emitConsoleAnswer(inspectReferenceText());
 }
 
 // ============================================
@@ -184,9 +182,7 @@ function inspectReferenceText() {
 }
 
 function logInspectOnly() {
-    console.clear();
-    console.log("--- Task 1: Inspect a Prototype Chain ---");
-    console.log(inspectReferenceText());
+    emitConsoleAnswer(inspectReferenceText());
 }
 
 // ============================================
@@ -224,9 +220,7 @@ function createReferenceText() {
 }
 
 function logCreateOnly() {
-    console.clear();
-    console.log("--- Task 2: Build with Object.create ---");
-    console.log(createReferenceText());
+    emitConsoleAnswer(createReferenceText());
 }
 
 // ============================================
@@ -291,9 +285,7 @@ function constructorReferenceText() {
 }
 
 function logConstructorOnly() {
-    console.clear();
-    console.log("--- Task 3: Constructor Function Inheritance ---");
-    console.log(constructorReferenceText());
+    emitConsoleAnswer(constructorReferenceText());
 }
 
 // ============================================
@@ -328,9 +320,7 @@ function hasOwnReferenceText() {
 }
 
 function logHasOwnOnly() {
-    console.clear();
-    console.log("--- Bonus: hasOwnProperty vs in ---");
-    console.log(hasOwnReferenceText());
+    emitConsoleAnswer(hasOwnReferenceText());
 }
 
 // ============================================
@@ -392,9 +382,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -661,17 +649,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 4: Prototypes & Prototype Chain 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Every object has a [[Prototype]] (hidden link)");
-    console.log("• Object.create() - explicit prototype linking");
-    console.log("• The prototype chain - read walks up, write creates own");
-    console.log("• hasOwnProperty vs in - own properties vs chain lookup");
-    console.log("• Constructor functions and pre-ES6 inheritance");
-    console.log("• Why modifying built-in prototypes is dangerous");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see prototype chains in action!");
 });

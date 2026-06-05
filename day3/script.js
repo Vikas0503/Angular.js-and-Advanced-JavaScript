@@ -29,10 +29,7 @@ function arithmeticReferenceText() {
 }
 
 function logArithmeticOnly() {
-    console.clear();
-    const { title, body } = arithmeticData();
-    console.log(`--- ${title} ---`);
-    body.forEach((line) => console.log(line));
+    emitConsoleAnswer(arithmeticReferenceText());
 }
 
 /* ----- Task 2: Equality ----- */
@@ -53,10 +50,7 @@ function equalityReferenceText() {
 }
 
 function logEqualityOnly() {
-    console.clear();
-    const { title, body } = equalityData();
-    console.log(`--- ${title} ---`);
-    body.forEach((line) => console.log(line));
+    emitConsoleAnswer(equalityReferenceText());
 }
 
 /* ----- Task 3: Access ----- */
@@ -90,10 +84,7 @@ function accessReferenceText() {
 }
 
 function logAccessOnly() {
-    console.clear();
-    const { title, body } = accessData();
-    console.log(`--- ${title} ---`);
-    body.forEach((line) => console.log(line));
+    emitConsoleAnswer(accessReferenceText());
 }
 
 /* ----- Bonus: Ternary & nullish ----- */
@@ -119,10 +110,7 @@ function ternaryReferenceText() {
 }
 
 function logTernaryOnly() {
-    console.clear();
-    const { title, body } = ternaryData();
-    console.log(`--- ${title} ---`);
-    body.forEach((line) => console.log(line));
+    emitConsoleAnswer(ternaryReferenceText());
 }
 
 /* ----- Rectangle area ----- */
@@ -146,10 +134,7 @@ function rectangleReferenceText() {
 }
 
 function logRectangleOnly() {
-    console.clear();
-    const { title, body } = rectangleData();
-    console.log(`--- ${title} ---`);
-    body.forEach((line) => console.log(line));
+    emitConsoleAnswer(rectangleReferenceText());
 }
 
 const consoleLoggers = {

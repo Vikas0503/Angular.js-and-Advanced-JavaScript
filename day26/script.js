@@ -60,12 +60,12 @@ function buildClassWorkHTML() {
         '  return {\n' +
         '    name,\n' +
         '    role,\n' +
-        '    greet() { return "Hi, I\\'m " + this.name + " (" + this.role + ")"; }\n' +
+        '    greet() { return "Hi, I\\\'m " + this.name + " (" + this.role + ")"; }\n' +
         '  };\n' +
         '}\n\n' +
         'const u1 = createUser("Priya");\n' +
         'const u2 = createUser("Aarav", "admin");\n' +
-        'console.log(u1.greet()); // "Hi, I\\'m Priya (user)"</code></pre>' +
+        'console.log(u1.greet()); // "Hi, I\\\'m Priya (user)"</code></pre>' +
         '<span class="badge">✓ Factory pattern: functions that return objects</span>' +
         '</div>' +
         
@@ -169,9 +169,7 @@ function emitterReferenceText() {
 }
 
 function logEmitterOnly() {
-    console.clear();
-    console.log("--- Task 1: Tiny EventEmitter ---");
-    console.log(emitterReferenceText());
+    emitConsoleAnswer(emitterReferenceText());
 }
 
 // ============================================
@@ -216,9 +214,7 @@ function factoryReferenceText() {
 }
 
 function logFactoryOnly() {
-    console.clear();
-    console.log("--- Task 2: User Factory ---");
-    console.log(factoryReferenceText());
+    emitConsoleAnswer(factoryReferenceText());
 }
 
 // ============================================
@@ -271,9 +267,7 @@ function cacheReferenceText() {
 }
 
 function logCacheOnly() {
-    console.clear();
-    console.log("--- Task 3: Module-Singleton Cache ---");
-    console.log(cacheReferenceText());
+    emitConsoleAnswer(cacheReferenceText());
 }
 
 // ============================================
@@ -324,9 +318,7 @@ function proxyReferenceText() {
 }
 
 function logProxyOnly() {
-    console.clear();
-    console.log("--- Bonus: Reactive Counter with Proxy ---");
-    console.log(proxyReferenceText());
+    emitConsoleAnswer(proxyReferenceText());
 }
 
 // ============================================
@@ -382,9 +374,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -631,16 +621,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 14: Design Patterns 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Module Pattern — bundle code, hide internals");
-    console.log("• Observer (Pub/Sub) — subject notifies many");
-    console.log("• Factory Pattern — functions that return objects");
-    console.log("• Singleton Pattern — exactly one instance");
-    console.log("• ES6 Proxy — intercept object operations");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see design patterns in action!");
 });

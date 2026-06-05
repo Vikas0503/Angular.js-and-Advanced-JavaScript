@@ -16,6 +16,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    console.log('Dashboard ready. Click on any day to view exercises.');
 });

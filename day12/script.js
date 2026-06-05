@@ -143,9 +143,7 @@ function jsonParseReferenceText() {
 }
 
 function logJsonParseOnly() {
-    console.clear();
-    console.log("--- Task 1: Safe JSON Parse ---");
-    console.log(jsonParseReferenceText());
+    emitConsoleAnswer(jsonParseReferenceText());
 }
 
 // ============================================
@@ -188,9 +186,7 @@ function badAgeReferenceText() {
 }
 
 function logBadAgeOnly() {
-    console.clear();
-    console.log("--- Task 2: Throw on Bad Age ---");
-    console.log(badAgeReferenceText());
+    emitConsoleAnswer(badAgeReferenceText());
 }
 
 // ============================================
@@ -240,9 +236,7 @@ function validationReferenceText() {
 }
 
 function logValidationOnly() {
-    console.clear();
-    console.log("--- Task 3: Custom ValidationError ---");
-    console.log(validationReferenceText());
+    emitConsoleAnswer(validationReferenceText());
 }
 
 // ============================================
@@ -292,9 +286,7 @@ function modulesReferenceText() {
 }
 
 function logModulesOnly() {
-    console.clear();
-    console.log("--- Task 4: Modules Demo ---");
-    console.log(modulesReferenceText());
+    emitConsoleAnswer(modulesReferenceText());
 }
 
 // ============================================
@@ -359,9 +351,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -598,32 +588,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up live demos
     setupLiveDemos();
-    
-    // Console welcome message
-    console.log("=== Day 12: Error Handling & Modules Ready ===");
-    console.log("");
-    console.log("🎉 CONGRATULATIONS! This is the FINAL session of Basic JavaScript! 🎉");
-    console.log("");
-    console.log("Class Work examples:");
-    console.log("• Error Types: Syntax, Runtime, Logic");
-    console.log("• try/catch/finally for graceful error handling");
-    console.log("• Error object properties (name, message, stack)");
-    console.log("• throw custom errors");
-    console.log("• Custom Error Classes (ValidationError)");
-    console.log("• ES6 Modules: export/import (named and default)");
-    console.log("");
-    console.log("Homework Tasks (click to expand):");
-    console.log("• Task 1: Safe JSON Parse");
-    console.log("• Task 2: Throw on Bad Age");
-    console.log("• Task 3: Custom ValidationError");
-    console.log("• Task 4: Two-File Module Setup");
-    console.log("• Practice: Additional tasks");
-    console.log("");
-    console.log("💡 Click on any homework task header to see the explanation!");
-    console.log("🎮 Use the interactive demos to test error handling in action!");
-    console.log("");
-    console.log("📚 You've completed the Basic JavaScript course!");
-    console.log("🚀 Next: Advanced JavaScript concepts!");
 });
 
 // ============================================

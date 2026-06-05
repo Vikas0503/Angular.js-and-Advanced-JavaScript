@@ -136,9 +136,7 @@ function shallowReferenceText() {
 }
 
 function logShallowOnly() {
-    console.clear();
-    console.log("--- Task 1: Shallow Clone Bug ---");
-    console.log(shallowReferenceText());
+    emitConsoleAnswer(shallowReferenceText());
 }
 
 // ============================================
@@ -177,9 +175,7 @@ function immutableReferenceText() {
 }
 
 function logImmutableOnly() {
-    console.clear();
-    console.log("--- Task 2: Immutable Nested Update ---");
-    console.log(immutableReferenceText());
+    emitConsoleAnswer(immutableReferenceText());
 }
 
 // ============================================
@@ -213,9 +209,7 @@ function arrayReferenceText() {
 }
 
 function logArrayOnly() {
-    console.clear();
-    console.log("--- Task 3: Update One Item in an Array ---");
-    console.log(arrayReferenceText());
+    emitConsoleAnswer(arrayReferenceText());
 }
 
 // ============================================
@@ -247,9 +241,7 @@ function optionalReferenceText() {
 }
 
 function logOptionalOnly() {
-    console.clear();
-    console.log("--- Bonus: Optional Chaining ---");
-    console.log(optionalReferenceText());
+    emitConsoleAnswer(optionalReferenceText());
 }
 
 // ============================================
@@ -307,9 +299,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -606,17 +596,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up live demos
     setupLiveDemos();
     
-    // Console welcome message
-    console.log("🔥 ADVANCED DAY 9: Advanced Array & Object Patterns 🔥");
-    console.log("");
-    console.log("Class Work topics:");
-    console.log("• Shallow vs Deep Clone — spread vs structuredClone");
-    console.log("• Object.freeze and deep freeze implementation");
-    console.log("• Immutable updates with spread operator");
-    console.log("• Advanced destructuring (defaults, rename, nested, rest)");
-    console.log("• Computed keys for dynamic property names");
-    console.log("• Optional chaining (?.) and nullish coalescing (??)");
-    console.log("");
-    console.log("💡 Open each task to see explanations and run live demos!");
-    console.log("🎮 Click the buttons to see immutable patterns in action!");
 });

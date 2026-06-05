@@ -118,13 +118,7 @@ function rectangleReferenceText() {
 }
 
 function logRectangleOnly() {
-    console.clear();
-    console.log("--- Task 1: Rectangle Area ---");
-    console.log(rectangleReferenceText());
-    console.log("\n--- Explanation ---");
-    console.log("Regular function uses explicit 'return' keyword");
-    console.log("Arrow function with implicit return doesn't need braces or 'return'");
-    console.log("Both produce the same result!");
+    emitConsoleAnswer(rectangleReferenceText());
 }
 
 // ============================================
@@ -159,9 +153,7 @@ function greetingReferenceText() {
 }
 
 function logGreetingOnly() {
-    console.clear();
-    console.log("--- Task 2: Greeting with Default Parameter ---");
-    console.log(greetingReferenceText());
+    emitConsoleAnswer(greetingReferenceText());
 }
 
 // ============================================
@@ -191,9 +183,7 @@ function temperatureReferenceText() {
 }
 
 function logTemperatureOnly() {
-    console.clear();
-    console.log("--- Task 3: Temperature Converter (C to F) ---");
-    console.log(temperatureReferenceText());
+    emitConsoleAnswer(temperatureReferenceText());
 }
 
 // ============================================
@@ -247,9 +237,7 @@ function pureImpureReferenceText() {
 }
 
 function logPureImpureOnly() {
-    console.clear();
-    console.log("--- Task 4: Pure vs Impure Functions ---");
-    console.log(pureImpureReferenceText());
+    emitConsoleAnswer(pureImpureReferenceText());
 }
 
 // ============================================
@@ -305,9 +293,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -414,21 +400,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set up homework task accordions
     wireAccordions();
     
-    // Console welcome message
-    console.log("=== Day 6: Arrow Functions & Default Parameters Ready ===");
-    console.log("");
-    console.log("📘 Class Work examples:");
-    console.log("• Arrow functions (full form, implicit return, single param, zero params)");
-    console.log("• Default parameters");
-    console.log("");
-    console.log("📚 Homework Tasks (click to expand):");
-    console.log("• Task 1: Rectangle Area");
-    console.log("• Task 2: Greeting with Default Parameter");
-    console.log("• Task 3: Temperature Converter (C to F)");
-    console.log("• Task 4: Pure vs Impure Functions");
-    console.log("• Practice: Additional tasks");
-    console.log("");
-    console.log("💡 Click on any homework task header to see its output!");
 });
 
 // ============================================

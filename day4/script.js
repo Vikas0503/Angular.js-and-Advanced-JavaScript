@@ -73,13 +73,7 @@ function gradingReferenceText() {
 }
 
 function logGradingOnly() {
-    console.clear();
-    console.log("--- Task 1: Grading System (if/else if/else) ---");
-    console.log(gradingReferenceText());
-    console.log("\n--- Explanation ---");
-    console.log("The function checks marks in descending order:");
-    console.log("90+ → A, 75–89 → B, 60–74 → C, below 60 → F");
-    console.log("Bonus: Invalid marks (<0 or >100) are caught first.");
+    emitConsoleAnswer(gradingReferenceText());
 }
 
 // ============================================
@@ -119,13 +113,7 @@ function dayTypeReferenceText() {
 }
 
 function logDayTypeOnly() {
-    console.clear();
-    console.log("--- Task 2: Day Type with switch ---");
-    console.log(dayTypeReferenceText());
-    console.log("\n--- Explanation ---");
-    console.log("Fall-through groups Monday-Friday into Weekday case.");
-    console.log("Saturday & Sunday fall into Weekend case.");
-    console.log("Any other value triggers the default case.");
+    emitConsoleAnswer(dayTypeReferenceText());
 }
 
 // ============================================
@@ -187,9 +175,7 @@ function truthyReferenceText() {
 }
 
 function logTruthyOnly() {
-    console.clear();
-    console.log("--- Task 3: Truthy / Falsy Detective ---");
-    console.log(truthyReferenceText());
+    emitConsoleAnswer(truthyReferenceText());
 }
 
 // ============================================
@@ -271,9 +257,7 @@ function guardReferenceText() {
 }
 
 function logGuardOnly() {
-    console.clear();
-    console.log("--- Bonus: Guard Clauses Refactor ---");
-    console.log(guardReferenceText());
+    emitConsoleAnswer(guardReferenceText());
 }
 
 // ============================================
@@ -337,16 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Set up accordion functionality
     wireAccordions();
-    
-    // Console welcome message
-    console.log("=== Day 3 Homework Ready ===");
-    console.log("Click on any task header to see its output in the console!");
-    console.log("");
-    console.log("Available tasks:");
-    console.log("• Task 1: Grading System (if/else if/else)");
-    console.log("• Task 2: Day Type (switch statement)");
-    console.log("• Task 3: Truthy / Falsy Detective");
-    console.log("• Bonus: Guard Clauses Refactor");
 });
 
 // Make functions available globally for console testing

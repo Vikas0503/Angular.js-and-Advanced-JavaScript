@@ -85,9 +85,7 @@ function selectChangeReferenceText() {
 }
 
 function logSelectChangeOnly() {
-    console.clear();
-    console.log("--- Task 1: Select and Change Text ---");
-    console.log(selectChangeReferenceText());
+    emitConsoleAnswer(selectChangeReferenceText());
 }
 
 // ============================================
@@ -112,9 +110,7 @@ function darkThemeReferenceText() {
 }
 
 function logDarkThemeOnly() {
-    console.clear();
-    console.log("--- Task 2: Toggle Dark Theme Class ---");
-    console.log(darkThemeReferenceText());
+    emitConsoleAnswer(darkThemeReferenceText());
 }
 
 // ============================================
@@ -144,9 +140,7 @@ function buildListReferenceText() {
 }
 
 function logBuildListOnly() {
-    console.clear();
-    console.log("--- Task 3: Build a List Dynamically ---");
-    console.log(buildListReferenceText());
+    emitConsoleAnswer(buildListReferenceText());
 }
 
 // ============================================
@@ -178,9 +172,7 @@ function cardReferenceText() {
 }
 
 function logCardOnly() {
-    console.clear();
-    console.log("--- Bonus: Build a Product Card ---");
-    console.log(cardReferenceText());
+    emitConsoleAnswer(cardReferenceText());
 }
 
 // ============================================
@@ -226,9 +218,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -415,24 +405,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up live demos
     setupLiveDemos();
-    
-    // Console welcome message
-    console.log("=== Day 10: DOM Manipulation Ready ===");
-    console.log("");
-    console.log("Class Work examples:");
-    console.log("• Selecting elements with getElementById, querySelector, querySelectorAll");
-    console.log("• Modifying styles with style property and classList");
-    console.log("• Removing elements with .remove() and innerHTML");
-    console.log("");
-    console.log("Homework Tasks (click to expand):");
-    console.log("• Task 1: Select and Change Text");
-    console.log("• Task 2: Toggle Dark Theme Class");
-    console.log("• Task 3: Build a List Dynamically");
-    console.log("• Bonus: Build a Product Card");
-    console.log("• Practice: Additional tasks");
-    console.log("");
-    console.log("💡 Click on any homework task header to see the output!");
-    console.log("🎮 Use the buttons in the live demo areas to interact with the code!");
 });
 
 // ============================================

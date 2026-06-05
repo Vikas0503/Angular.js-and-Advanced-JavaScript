@@ -163,9 +163,7 @@ function studentReferenceText() {
 }
 
 function logStudentOnly() {
-    console.clear();
-    console.log("--- Task 1: Build a Student Object ---");
-    console.log(studentReferenceText());
+    emitConsoleAnswer(studentReferenceText());
 }
 
 // ============================================
@@ -227,9 +225,7 @@ function bankReferenceText() {
 }
 
 function logBankOnly() {
-    console.clear();
-    console.log("--- Task 2: Bank Account with Methods ---");
-    console.log(bankReferenceText());
+    emitConsoleAnswer(bankReferenceText());
 }
 
 // ============================================
@@ -279,9 +275,7 @@ function destructureReferenceText() {
 }
 
 function logDestructureOnly() {
-    console.clear();
-    console.log("--- Task 3: Destructuring Assignment ---");
-    console.log(destructureReferenceText());
+    emitConsoleAnswer(destructureReferenceText());
 }
 
 // ============================================
@@ -347,9 +341,7 @@ function iterableReferenceText() {
 }
 
 function logIterableOnly() {
-    console.clear();
-    console.log("--- Bonus: Object as Iterable ---");
-    console.log(iterableReferenceText());
+    emitConsoleAnswer(iterableReferenceText());
 }
 
 // ============================================
@@ -417,9 +409,7 @@ function practiceReferenceText() {
 }
 
 function logPracticeOnly() {
-    console.clear();
-    console.log("--- Practice Tasks ---");
-    console.log(practiceReferenceText());
+    emitConsoleAnswer(practiceReferenceText());
 }
 
 // ============================================
@@ -529,23 +519,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up homework task accordions
     wireAccordions();
-    
-    // Console welcome message
-    console.log("=== Day 8: Objects & Destructuring Ready ===");
-    console.log("");
-    console.log("📘 Class Work examples:");
-    console.log("• Basic object with nested properties");
-    console.log("• Object methods with 'this' keyword");
-    console.log("• Object.keys, Object.values, Object.entries");
-    console.log("");
-    console.log("📚 Homework Tasks (click to expand):");
-    console.log("• Task 1: Build a Student Object");
-    console.log("• Task 2: Bank Account with Methods (this)");
-    console.log("• Task 3: Destructuring Assignment");
-    console.log("• Bonus: Object as Iterable");
-    console.log("• Practice: Additional tasks");
-    console.log("");
-    console.log("💡 Click on any homework task header to see its output!");
 });
 
 // ============================================

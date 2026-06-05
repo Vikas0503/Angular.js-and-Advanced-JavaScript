@@ -120,13 +120,7 @@ function multiplicationReferenceText() {
 }
 
 function logMultiplicationOnly() {
-    console.clear();
-    console.log("--- Task 1: Multiplication Table (for loop) ---");
-    console.log(multiplicationReferenceText());
-    console.log("\n--- Explanation ---");
-    console.log("The for loop runs from i=1 to i=10");
-    console.log("String concatenation formats the output");
-    console.log("Bonus: Only shows even multiples of 7");
+    emitConsoleAnswer(multiplicationReferenceText());
 }
 
 // ============================================
@@ -164,13 +158,7 @@ function sumWhileReferenceText() {
 }
 
 function logSumWhileOnly() {
-    console.clear();
-    console.log("--- Task 2: Sum with while loop ---");
-    console.log(sumWhileReferenceText());
-    console.log("\n--- Explanation ---");
-    console.log("while loop continues as long as condition is true");
-    console.log("Sum 1-100 = 5050 (formula: n*(n+1)/2)");
-    console.log("Bonus: Only odd numbers are added using if condition");
+    emitConsoleAnswer(sumWhileReferenceText());
 }
 
 // ============================================
@@ -212,14 +200,7 @@ function forOfNamesReferenceText() {
 }
 
 function logForOfNamesOnly() {
-    console.clear();
-    console.log("--- Task 3: for...of with Names ---");
-    console.log(forOfNamesReferenceText());
-    console.log("\n--- Explanation ---");
-    console.log("for...of iterates over iterable objects (arrays, strings, etc.)");
-    console.log("First loop: prints each name");
-    console.log("Second loop: counts names with length > 4");
-    console.log("Bonus: for...of works on strings - each character is iterated");
+    emitConsoleAnswer(forOfNamesReferenceText());
 }
 
 // ============================================
@@ -254,15 +235,7 @@ function objectInspectorReferenceText() {
 }
 
 function logObjectInspectorOnly() {
-    console.clear();
-    console.log("--- Task 4: Object Inspector (for...in) ---");
-    console.log(objectInspectorReferenceText());
-    console.log("\n--- Explanation ---");
-    console.log("for...in iterates over enumerable properties of an object");
-    console.log("Use object[key] to access values dynamically");
-    console.log("Object.keys() returns array of property names");
-    console.log("Object.values() returns array of property values");
-    console.log("Object.entries() returns array of [key, value] pairs");
+    emitConsoleAnswer(objectInspectorReferenceText());
 }
 
 // ============================================
@@ -365,42 +338,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up homework task accordions
     wireAccordions();
-    
-    // Console welcome message
-    console.log("=== Day 4: Loops & Iteration Ready ===");
-    console.log("");
-    console.log("📘 Class Work examples:");
-    console.log("• for...of with array");
-    console.log("• for loop with string");
-    console.log("• for loop with Object.keys()");
-    console.log("• Multiplication table");
-    console.log("");
-    console.log("📚 Homework Tasks (click to expand):");
-    console.log("• Task 1: Multiplication Table (for loop)");
-    console.log("• Task 2: Sum with while loop");
-    console.log("• Task 3: for...of with Names");
-    console.log("• Task 4: Object Inspector (for...in)");
-    console.log("");
-    console.log("💡 Click on any homework task header to see its output!");
-    
-    // Demo: Run the classroom examples in console
-    console.log("\n=== Classroom Examples Output ===");
-    console.log("for...of with fruits:");
-    for (let f of fruits) console.log(f);
-    
-    console.log("\nfor loop with name 'vixky':");
-    for (let i = 0; i < name.length; i++) console.log(name[i]);
-    
-    console.log("\nfor loop with Object.keys():");
-    const studentKeys = Object.keys(student);
-    for (let k = 0; k < studentKeys.length; k++) {
-        console.log(studentKeys[k], ":", student[studentKeys[k]]);
-    }
-    
-    console.log("\nMultiplication Table of 7:");
-    for (let i = 1; i <= 10; i++) {
-        console.log(7 + " * " + i + " = " + (7 * i));
-    }
 });
 
 // ============================================
@@ -413,7 +350,6 @@ window.toggleClassWork = toggleClassWork;
 // Homework functions exposed for console testing
 window.multiplicationTable = function(num) {
     if (num === undefined) num = 7;
-    console.log("=== Multiplication Table of " + num + " ===");
     for (let i = 1; i <= 10; i++) {
         console.log(num + " x " + i + " = " + (num * i));
     }
@@ -426,7 +362,7 @@ window.sumWithWhile = function() {
         sum += i;
         i++;
     }
-    console.log("Sum of 1 to 100: " + sum);
+    console.log(sum);
     return sum;
 };
 
@@ -437,27 +373,25 @@ window.sumOddWithWhile = function() {
         if (i % 2 !== 0) sum += i;
         i++;
     }
-    console.log("Sum of odd numbers 1 to 100: " + sum);
+    console.log(sum);
     return sum;
 };
 
 window.printNames = function() {
     const names = ["Priya", "Aarav", "Riya", "Kabir", "Anaya"];
-    console.log("All names:");
     for (let name of names) console.log(name);
-    
+
     let count = 0;
     for (let name of names) {
         if (name.length > 4) count++;
     }
-    console.log("Names longer than 4 characters: " + count);
+    console.log(count);
 };
 
 window.inspectObject = function() {
     const studentObj = { name: "Anaya", age: 21, city: "Jaipur", course: "B.Tech" };
-    console.log("Object properties:");
     for (let key in studentObj) {
         console.log(key + ": " + studentObj[key]);
     }
-    console.log("Total properties: " + Object.keys(studentObj).length);
+    console.log(Object.keys(studentObj).length);
 };
